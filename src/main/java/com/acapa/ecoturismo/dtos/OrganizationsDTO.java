@@ -1,5 +1,9 @@
 package com.acapa.ecoturismo.dtos;
 
+import java.util.Set;
+
+import com.acapa.ecoturismo.entitys.Vereda;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -37,6 +41,8 @@ public class OrganizationsDTO {
     private String organizationPhone;
     @NotEmpty
     private String organizationLogo;
+    private Set<VeredaDTOUse> vereda;
+
     public long getId() {
         return id;
     }
@@ -109,8 +115,18 @@ public class OrganizationsDTO {
     public void setOrganizationLogo(String organizationLogo) {
         this.organizationLogo = organizationLogo;
     }
+
+
     public OrganizationsDTO() {
     super();
     }
-        
+    public Set<VeredaDTOUse> getVereda() {
+        return vereda;
+    }
+    public void setVereda(Set<VeredaDTOUse> vereda) {
+        this.vereda = vereda;
+    }
+
+
+
 }
