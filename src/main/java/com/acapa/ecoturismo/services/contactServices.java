@@ -10,7 +10,7 @@ public interface contactServices {
     public ContactDTO createContact(ContactDTO contactDTO);
     public List<ContactDTO>getAllContact();
     public ContactDTO getContactById( Long idContact);
-    public ContactDTO updateContact( Long idVereda, ContactDTO contactDTO);
+    public ContactDTO updateContact( Long idContact, ContactDTO contactDTO);
     public void deleteContact( Long ContactId);
     
 }

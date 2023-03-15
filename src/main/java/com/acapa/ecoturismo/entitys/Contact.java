@@ -18,7 +18,6 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "contact",uniqueConstraints ={ @UniqueConstraint(columnNames={"contactName"}),
-@UniqueConstraint(columnNames={"addresContact"}),
 @UniqueConstraint(columnNames={"phoneNumber"}),
 @UniqueConstraint(columnNames={"phoneNumber2"}),
 @UniqueConstraint(columnNames={"email"})})

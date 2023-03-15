@@ -1,5 +1,11 @@
 package com.acapa.ecoturismo.entitys;
 
+import java.util.Set;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
@@ -17,7 +24,7 @@ public class Initiative {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    long id;
+    Long id;
     @Column(name = "initiativeName", nullable = false, length = 100)
     String initiativeName;
     @Column(name = "initiativeDescription", nullable = false, length = 100)
@@ -35,7 +42,16 @@ public class Initiative {
     @JoinColumn(name = "contact_id",nullable = false)
     private Contact contact;
 
-    public long getId() {
+    @JsonBackReference
+    @OneToMany(mappedBy = "initiative",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Attractives> attractives = new HashSet<>();
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "initiative",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Services> services = new HashSet<>();
+
+
+    public Long getId() {
         return id;
     }
 
@@ -91,8 +107,25 @@ public class Initiative {
         this.contact = contact;
     }
 
+
     public Initiative() {
         super();
+    }
+
+    public Set<Attractives> getAttractives() {
+        return attractives;
+    }
+
+    public void setAttractives(Set<Attractives> attractives) {
+        this.attractives = attractives;
+    }
+
+    public Set<Services> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Services> services) {
+        this.services = services;
     }
 
 

@@ -1,10 +1,5 @@
 package com.acapa.ecoturismo.dtos;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.acapa.ecoturismo.entitys.Initiative;
-import com.acapa.ecoturismo.entitys.Vereda;
 
 public class ContactDTO {
     long id;
@@ -14,8 +9,6 @@ public class ContactDTO {
     String phoneNumber2;
     String email;
 
-    private Set<Vereda> vereda = new HashSet<>();
-    private Set<Initiative> initiative = new HashSet<>();
     public long getId() {
         return id;
     }
@@ -52,18 +45,7 @@ public class ContactDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Set<Vereda> getVereda() {
-        return vereda;
-    }
-    public void setVereda(Set<Vereda> vereda) {
-        this.vereda = vereda;
-    }
-    public Set<Initiative> getInitiative() {
-        return initiative;
-    }
-    public void setInitiative(Set<Initiative> initiative) {
-        this.initiative = initiative;
-    }
+   
     public ContactDTO() {
         super();
     }

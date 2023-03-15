@@ -1,10 +1,6 @@
 package com.acapa.ecoturismo.dtos;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import com.acapa.ecoturismo.entitys.Contact;
-import com.acapa.ecoturismo.entitys.Initiative;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -18,8 +14,9 @@ public class VeredaDTO {
     private long habiNumVereda;
     @NotEmpty
     private String coorVereda;
-    // la lista de contactos esta presentando un error, el cual toca corregir.
-    //private Contact contact;
+    private OrganizationsDTO organizations;
+    private ContactDTO contact;
+    
     public long getId() {
         return id;
     }
@@ -58,19 +55,30 @@ public class VeredaDTO {
     public void setCoorVereda(String coorVereda) {
         this.coorVereda = coorVereda;
     }
-    /* 
-    public Contact getContact() {
-        return contact;
-    }
     
-    
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-    */
    public VeredaDTO() {
         super();
     }
+
+
+public OrganizationsDTO getOrganizations() {
+    return organizations;
+}
+
+
+public void setOrganizations(OrganizationsDTO organizations) {
+    this.organizations = organizations;
+}
+
+
+public ContactDTO getContact() {
+    return contact;
+}
+
+
+public void setContact(ContactDTO contact) {
+    this.contact = contact;
+}
 
 
 

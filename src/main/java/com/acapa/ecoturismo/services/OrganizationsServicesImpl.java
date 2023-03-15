@@ -62,7 +62,7 @@ private Organizations mapearEntity(OrganizationsDTO organizationsDTO){
 @Override
 public OrganizationsDTO updateOrganizacion(OrganizationsDTO organizationsDTO, long id) {
     Organizations organizations = organizationsRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException(" it's Publication", "id", id));
+        .orElseThrow(() -> new ResourceNotFoundException(" it's Organizations", "id", id));
 
         organizations.setOrganizationName(organizationsDTO.getOrganizationName());
         organizations.setOrganizationAddress(organizationsDTO.getOrganizationAddress());

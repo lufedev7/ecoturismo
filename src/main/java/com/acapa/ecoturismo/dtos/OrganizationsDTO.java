@@ -2,7 +2,6 @@ package com.acapa.ecoturismo.dtos;
 
 import java.util.Set;
 
-import com.acapa.ecoturismo.entitys.Vereda;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

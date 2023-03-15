@@ -25,7 +25,7 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
     @Autowired
-   
+
 
 //.httpBasic()
 //
@@ -33,7 +33,9 @@ public class SecurityConfig {
     SecurityFilterChain filterchain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
         return http.csrf().disable()
         .authorizeHttpRequests().requestMatchers(HttpMethod.GET, "/api/**")
-                .permitAll().requestMatchers("/api/auth/**").permitAll().anyRequest().authenticated()
+                .permitAll().requestMatchers("/api/auth/**").
+                permitAll().requestMatchers("/api/services/post/resourceservices/**").
+                permitAll().anyRequest().authenticated()
                 .and().httpBasic().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
                 and().build();

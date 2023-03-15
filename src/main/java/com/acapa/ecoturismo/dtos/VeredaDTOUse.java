@@ -1,6 +1,5 @@
 package com.acapa.ecoturismo.dtos;
 
-import com.acapa.ecoturismo.entitys.Contact;
 
 
 
