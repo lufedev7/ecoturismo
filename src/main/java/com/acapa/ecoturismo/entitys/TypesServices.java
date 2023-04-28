@@ -16,11 +16,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "typesservices", uniqueConstraints = { @UniqueConstraint(columnNames={"servicestype"})})
+@Table(name = "typesservices", uniqueConstraints = { @UniqueConstraint(columnNames = { "servicestype" }) })
 public class TypesServices {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "servicestype", nullable = false, length = 100)
     private String servicesType;
@@ -28,10 +28,16 @@ public class TypesServices {
     private String descriptionTypeServices;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "typesservices",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "typesServices", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Services> services = new HashSet<>();
 
+    public Set<Services> getServices() {
+        return services;
+    }
 
+    public void setServices(Set<Services> services) {
+        this.services = services;
+    }
 
     public long getId() {
         return id;
@@ -57,24 +63,14 @@ public class TypesServices {
         this.descriptionTypeServices = descriptionTypeServices;
     }
 
-
-
     public TypesServices() {
-    super();
+        super();
     }
 
     public TypesServices(long id, String servicesType, String descriptionTypeServices) {
         this.id = id;
         this.servicesType = servicesType;
         this.descriptionTypeServices = descriptionTypeServices;
-    }
-
-    public Set<Services> getServices() {
-        return services;
-    }
-
-    public void setServices(Set<Services> services) {
-        this.services = services;
     }
 
 }
