@@ -1,5 +1,7 @@
 package com.acapa.ecoturismo.dtos;
 
+import java.util.Set;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -19,6 +21,15 @@ public class PruebaDTO {
     String initiativeObject;
     private VeredaDTOUse vereda;
     private ContactDTOUse contact;
+    private Set<AttractivesDTOUse> attractives;
+
+    public Set<AttractivesDTOUse> getAttractives() {
+        return attractives;
+    }
+
+    public void setAttractives(Set<AttractivesDTOUse> attractives) {
+        this.attractives = attractives;
+    }
 
     public VeredaDTOUse getVereda() {
         return vereda;

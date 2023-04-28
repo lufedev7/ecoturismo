@@ -53,8 +53,10 @@ public class AttractivesServicesImpl implements AttractivesServices {
     @Override
     public List<AttractivesDTO> getAttractiveForInitiativeId(long initiativeId) {
 
-        List<Attractives> attractives = attractivesRepository.findByInitiativeId(initiativeId);
-        return attractives.stream().map(veredas -> mapearDTO(veredas)).collect(Collectors.toList());
+        // List<Attractives> attractives =
+        // attractivesRepository.findByInitiativeId(initiativeId);
+        return null; // attractives.stream().map(veredas ->
+                     // mapearDTO(veredas)).collect(Collectors.toList());
     }
 
     @Override

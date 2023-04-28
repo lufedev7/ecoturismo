@@ -34,21 +34,29 @@ public class Initiative {
     @Column(name = "initiativeObject", nullable = false, length = 100)
     String initiativeObject;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vereda_id", nullable = false)
-    private Vereda vereda;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_id", nullable = false)
-    private Contact contact;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "initiative", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Attractives> attractives = new HashSet<>();
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "initiative", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Services> services = new HashSet<>();
+    /*
+     * @ManyToOne(fetch = FetchType.LAZY)
+     * 
+     * @JoinColumn(name = "vereda_id", nullable = false)
+     * private Vereda vereda;
+     * 
+     * @ManyToOne(fetch = FetchType.LAZY)
+     * 
+     * @JoinColumn(name = "contact_id", nullable = false)
+     * private Contact contact;
+     * 
+     * @JsonBackReference
+     * 
+     * @OneToMany(mappedBy = "initiative", cascade = CascadeType.ALL, orphanRemoval
+     * = true)
+     * private Set<Attractives> attractives = new HashSet<>();
+     * 
+     * @JsonBackReference
+     * 
+     * @OneToMany(mappedBy = "initiative", cascade = CascadeType.ALL, orphanRemoval
+     * = true)
+     * private Set<Services> services = new HashSet<>();
+     */
 
     public Long getId() {
         return id;
@@ -90,40 +98,46 @@ public class Initiative {
         this.initiativeObject = initiativeObject;
     }
 
-    public Vereda getVereda() {
-        return vereda;
-    }
-
-    public void setVereda(Vereda vereda) {
-        this.vereda = vereda;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
+    /*
+     * public Vereda getVereda() {
+     * return vereda;
+     * }
+     * 
+     * public void setVereda(Vereda vereda) {
+     * this.vereda = vereda;
+     * }
+     * 
+     * public Contact getContact() {
+     * return contact;
+     * }
+     * 
+     * public void setContact(Contact contact) {
+     * this.contact = contact;
+     * }
+     */
 
     public Initiative() {
         super();
     }
 
-    public Set<Attractives> getAttractives() {
-        return attractives;
-    }
+    /*
+     * public Set<Attractives> getAttractives() {
+     * return attractives;
+     * }
+     * 
+     * public void setAttractives(Set<Attractives> attractives) {
+     * this.attractives = attractives;
+     * }
+     * 
+     * public Set<Services> getServices() {
+     * return services;
+     * }
+     */
 
-    public void setAttractives(Set<Attractives> attractives) {
-        this.attractives = attractives;
-    }
-
-    public Set<Services> getServices() {
-        return services;
-    }
-
-    public void setServices(Set<Services> services) {
-        this.services = services;
-    }
+    /*
+     * public void setServices(Set<Services> services) {
+     * this.services = services;
+     * }
+     */
 
 }

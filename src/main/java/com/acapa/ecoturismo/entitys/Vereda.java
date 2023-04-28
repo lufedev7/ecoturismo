@@ -40,9 +40,13 @@ public class Vereda {
     @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "vereda", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Initiative> initiative = new HashSet<>();
+    /*
+     * @JsonBackReference
+     * 
+     * @OneToMany(mappedBy = "vereda", cascade = CascadeType.ALL, orphanRemoval =
+     * true)
+     * private Set<Initiative> initiative = new HashSet<>();
+     */
 
     @JsonBackReference
     @OneToMany(mappedBy = "vereda", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -108,13 +112,15 @@ public class Vereda {
         this.contact = contact;
     }
 
-    public Set<Initiative> getInitiative() {
-        return initiative;
-    }
-
-    public void setInitiative(Set<Initiative> initiative) {
-        this.initiative = initiative;
-    }
+    /*
+     * public Set<Initiative> getInitiative() {
+     * return initiative;
+     * }
+     * 
+     * public void setInitiative(Set<Initiative> initiative) {
+     * this.initiative = initiative;
+     * }
+     */
 
     public Vereda() {
         super();
