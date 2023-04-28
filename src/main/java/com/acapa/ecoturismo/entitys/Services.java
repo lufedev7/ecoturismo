@@ -34,20 +34,21 @@ public class Services {
     @Column(name = "featured", nullable = false, length = 200)
     private boolean featured;
 
- 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "initiative_id",nullable = false)
     private Initiative initiative;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "typeservices_id",nullable = false)
-    private TypesServices typesServices;
+    private TypesServices typesservices;
+
 
     @JsonBackReference
     @OneToMany(mappedBy = "services",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<ResourcesServices> resourceServices = new HashSet<>();
 
-    
 
     public String getServicesName() {
         return servicesName;
@@ -81,14 +82,6 @@ public class Services {
         this.initiative = initiative;
     }
 
-    public TypesServices getTypesServices() {
-        return typesServices;
-    }
-
-    public void setTypesServices(TypesServices typesServices) {
-        this.typesServices = typesServices;
-    }
-
     public Services() {
     super();
     }
@@ -117,5 +110,13 @@ public class Services {
         this.id = id;
     }
 
-    
+    public TypesServices getTypesservices() {
+        return typesservices;
+    }
+
+    public void setTypesservices(TypesServices typesservices) {
+        this.typesservices = typesservices;
+    }
+
+
 }

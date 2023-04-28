@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acapa.ecoturismo.dtos.ContactDTO;
+import com.acapa.ecoturismo.dtos.ContactDTOUse;
 import com.acapa.ecoturismo.entitys.Contact;
 import com.acapa.ecoturismo.exceptions.ResourceNotFoundException;
 import com.acapa.ecoturismo.repository.ContactRepository;
 
-
 @Service
-public class ContactServicesImpl implements contactServices{
+public class ContactServicesImpl implements contactServices {
 
     @Autowired
     private ContactRepository contactRepository;
@@ -22,11 +22,11 @@ public class ContactServicesImpl implements contactServices{
     private ModelMapper modelMapper;
 
     @Override
-    public ContactDTO createContact(ContactDTO contactDTO) {
+    public ContactDTOUse createContact(ContactDTOUse contactDTO) {
 
-        Contact contact = mapearEntity(contactDTO);
+        Contact contact = mapearEntityUse(contactDTO);
         Contact newContact = contactRepository.save(contact);
-        return mapearDTO(newContact);
+        return mapearDTOUse(newContact);
     }
 
     @Override
@@ -38,14 +38,14 @@ public class ContactServicesImpl implements contactServices{
     @Override
     public ContactDTO getContactById(Long idContact) {
         Contact contact = contactRepository.findById(idContact)
-        .orElseThrow(() -> new ResourceNotFoundException(" it's Contact", "id", idContact));
+                .orElseThrow(() -> new ResourceNotFoundException(" it's Contact", "id", idContact));
         return mapearDTO(contact);
     }
 
     @Override
-    public ContactDTO updateContact(Long idContact, ContactDTO contactDTO) {
+    public ContactDTOUse updateContact(Long idContact, ContactDTOUse contactDTO) {
         Contact contact = contactRepository.findById(idContact)
-        .orElseThrow(() -> new ResourceNotFoundException(" it's Contact", "id", idContact));
+                .orElseThrow(() -> new ResourceNotFoundException(" it's Contact", "id", idContact));
         contact.setContactName(contactDTO.getContactName());
         contact.setAddresContact(contactDTO.getAddresContact());
         contact.setEmail(contactDTO.getEmail());
@@ -53,20 +53,26 @@ public class ContactServicesImpl implements contactServices{
         contact.setPhoneNumber2(contactDTO.getPhoneNumber2());
 
         Contact updateContact = contactRepository.save(contact);
-        return mapearDTO(updateContact);
+        return mapearDTOUse(updateContact);
     }
 
     @Override
     public void deleteContact(Long idContact) {
 
         Contact contact = contactRepository.findById(idContact)
-        .orElseThrow(() -> new ResourceNotFoundException(" it's Contact", "id", idContact));
+                .orElseThrow(() -> new ResourceNotFoundException(" it's Contact", "id", idContact));
         contactRepository.delete(contact);
     }
-    private ContactDTO mapearDTO(Contact contact){
-        return modelMapper.map(contact,ContactDTO.class);
+
+    private ContactDTO mapearDTO(Contact contact) {
+        return modelMapper.map(contact, ContactDTO.class);
     }
-    private Contact mapearEntity(ContactDTO contactDTO){
-        return modelMapper.map(contactDTO,Contact.class);
+
+    private ContactDTOUse mapearDTOUse(Contact contact) {
+        return modelMapper.map(contact, ContactDTOUse.class);
+    }
+
+    private Contact mapearEntityUse(ContactDTOUse contactDTO) {
+        return modelMapper.map(contactDTO, Contact.class);
     }
 }

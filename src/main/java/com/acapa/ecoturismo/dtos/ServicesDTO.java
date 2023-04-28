@@ -15,6 +15,8 @@ public class ServicesDTO {
     @Size(min = 3, message = "la descripción del servicio debe de tener almenos 3 letras")
     private String description;
     private boolean featured;
+    private TypeServicesDTO typeServises;
+      private InitiativeDTO initiative;
     
     public long getId() {
         return id;
@@ -49,7 +51,17 @@ public class ServicesDTO {
     public void setFeatured(boolean featured) {
         this.featured = featured;
     }
-
-    
+     public TypeServicesDTO getTypeServises() {
+        return typeServises;
+    }
+    public void setTypeServises(TypeServicesDTO typeServises) {
+        this.typeServises = typeServises;
+    }
+     public InitiativeDTO getInitiative() {
+        return initiative;
+    }
+    public void setInitiative(InitiativeDTO initiative) {
+        this.initiative = initiative;
+    } 
 
 }

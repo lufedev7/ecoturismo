@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.ServicesDTO;
+import com.acapa.ecoturismo.dtos.TypeServicesDTO;
 import com.acapa.ecoturismo.services.ServicesServices;
 
 import jakarta.validation.Valid;
@@ -30,6 +31,12 @@ public class ServicesControllers {
     @PathVariable(value = "typeServiceId")Long typeServiceId,
     @Valid @RequestBody ServicesDTO servicesDTO){
         return new ResponseEntity<>(servicesServices.createServices(initiativeId, typeServiceId, servicesDTO),HttpStatus.CREATED);
+    }
+    @PostMapping("/initiative/{initiativeId}/service/{typeServiceId}")
+    public ResponseEntity<TypeServicesDTO> prueba( @PathVariable(value = "initiativeId")Long initiativeId,
+    @PathVariable(value = "typeServiceId")Long typeServiceId,
+    @Valid @RequestBody ServicesDTO servicesDTO){
+        return new ResponseEntity<>(servicesServices.prueba(initiativeId, typeServiceId, servicesDTO),HttpStatus.CREATED);
     }
 
 

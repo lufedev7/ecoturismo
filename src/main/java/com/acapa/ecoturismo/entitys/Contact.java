@@ -17,14 +17,14 @@ import jakarta.validation.constraints.Email;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "contact",uniqueConstraints ={ @UniqueConstraint(columnNames={"contactName"}),
-@UniqueConstraint(columnNames={"phoneNumber"}),
-@UniqueConstraint(columnNames={"phoneNumber2"}),
-@UniqueConstraint(columnNames={"email"})})
+@Table(name = "contact", uniqueConstraints = { @UniqueConstraint(columnNames = { "contactName" }),
+        @UniqueConstraint(columnNames = { "phoneNumber" }),
+        @UniqueConstraint(columnNames = { "phoneNumber2" }),
+        @UniqueConstraint(columnNames = { "email" }) })
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
     @Column(name = "contactName", nullable = false, length = 100)
     String contactName;
     @Column(name = "addresContact", nullable = false, length = 100)
@@ -38,19 +38,26 @@ public class Contact {
     String email;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "contact",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Vereda> vereda = new HashSet<>();
 
     @JsonBackReference
-    @OneToMany(mappedBy = "contact",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<Initiative> initiative = new HashSet<>();
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<prueba> prueba = new HashSet<>();
 
-    public long getId() {
+    public Set<prueba> getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(Set<prueba> prueba) {
+        this.prueba = prueba;
+    }
+
+    public Long getId() {
         return id;
     }
-    
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -102,19 +109,8 @@ public class Contact {
         this.vereda = vereda;
     }
 
-    public Set<Initiative> getInitiative() {
-        return initiative;
-    }
-
-
-    public void setInitiative(Set<Initiative> initiative) {
-        this.initiative = initiative;
-    }
     public Contact() {
         super();
     }
-
-
-
 
 }

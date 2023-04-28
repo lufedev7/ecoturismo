@@ -1,6 +1,5 @@
 package com.acapa.ecoturismo.entitys;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,12 +17,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.UniqueConstraint;
+
 @Entity
-@Table(name = "vereda", uniqueConstraints ={ @UniqueConstraint(columnNames={"veredaname"}),
-        @UniqueConstraint(columnNames={"coorvereda"})})
+@Table(name = "vereda", uniqueConstraints = { @UniqueConstraint(columnNames = { "veredaname" }),
+        @UniqueConstraint(columnNames = { "coorvereda" }) })
 public class Vereda {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "veredaname", nullable = false, length = 100)
     private String veredaName;
@@ -33,17 +33,29 @@ public class Vereda {
     private String CoorVereda;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id",nullable = false)
+    @JoinColumn(name = "organization_id", nullable = false)
     private Organizations organizations;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_id",nullable = false)
+    @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
 
-     @JsonBackReference
-    @OneToMany(mappedBy = "vereda",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonBackReference
+    @OneToMany(mappedBy = "vereda", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Initiative> initiative = new HashSet<>();
-    
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "vereda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<prueba> prueba = new HashSet<>();
+
+    public Set<prueba> getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(Set<prueba> prueba) {
+        this.prueba = prueba;
+    }
+
     public Long getId() {
         return id;
     }
@@ -96,7 +108,7 @@ public class Vereda {
         this.contact = contact;
     }
 
-     public Set<Initiative> getInitiative() {
+    public Set<Initiative> getInitiative() {
         return initiative;
     }
 
@@ -105,11 +117,7 @@ public class Vereda {
     }
 
     public Vereda() {
-    super();
+        super();
     }
-
-
-
-
 
 }

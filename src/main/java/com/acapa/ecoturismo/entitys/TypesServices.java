@@ -18,7 +18,7 @@ import jakarta.persistence.UniqueConstraint;
 @Entity
 @Table(name = "typesservices", uniqueConstraints = { @UniqueConstraint(columnNames={"servicestype"})})
 public class TypesServices {
-    
+
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private long id;
@@ -28,8 +28,10 @@ public class TypesServices {
     private String descriptionTypeServices;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "typesServices",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "typesservices",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Services> services = new HashSet<>();
+
+
 
     public long getId() {
         return id;
@@ -55,6 +57,18 @@ public class TypesServices {
         this.descriptionTypeServices = descriptionTypeServices;
     }
 
+
+
+    public TypesServices() {
+    super();
+    }
+
+    public TypesServices(long id, String servicesType, String descriptionTypeServices) {
+        this.id = id;
+        this.servicesType = servicesType;
+        this.descriptionTypeServices = descriptionTypeServices;
+    }
+
     public Set<Services> getServices() {
         return services;
     }
@@ -63,9 +77,4 @@ public class TypesServices {
         this.services = services;
     }
 
-    public TypesServices() {
-    super();
-    }
-
-    
 }

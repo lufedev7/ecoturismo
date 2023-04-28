@@ -11,6 +11,8 @@ public class TypesAttractivesDTO {
     private String typeAttractives;
     @NotEmpty
     private String descriptionType;
+	private AttractivesDTO attractivesDTO;
+	
 	public long getId() {
 		return id;
 	}
@@ -32,6 +34,12 @@ public class TypesAttractivesDTO {
 	public TypesAttractivesDTO() {
 	super();
     }
+	public AttractivesDTO getAttractivesDTO() {
+		return attractivesDTO;
+	}
+	public void setAttractivesDTO(AttractivesDTO attractivesDTO) {
+		this.attractivesDTO = attractivesDTO;
+	}
 
     
 }

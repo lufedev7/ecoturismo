@@ -10,4 +10,5 @@ public interface ResourcesAttractivesServices {
     public ResourcesAttractivesDTO getResourceAttractivesId(Long attractivesId, Long idResourcesAttractives);
     public ResourcesAttractivesDTO updateResourceAttractives(Long attractivesId, Long idResourcesAttractives, ResourcesAttractivesDTO resourcesAttractivesDTO);
     public void deleteResourceAttractives(Long attractivesId, Long resourcesattractivesId);
+    public List <ResourcesAttractivesDTO>getAllResourceAttractives(int numberPage, int measure, String orderBy, String sortDir);
 }

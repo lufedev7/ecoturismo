@@ -19,11 +19,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "initiative", uniqueConstraints ={ @UniqueConstraint(columnNames={"initiativeName"})})
+@Table(name = "initiative", uniqueConstraints = { @UniqueConstraint(columnNames = { "initiativeName" }) })
 public class Initiative {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column(name = "initiativeName", nullable = false, length = 100)
     String initiativeName;
@@ -35,21 +35,20 @@ public class Initiative {
     String initiativeObject;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vereda_id",nullable = false)
+    @JoinColumn(name = "vereda_id", nullable = false)
     private Vereda vereda;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contact_id",nullable = false)
+    @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "initiative",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "initiative", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Attractives> attractives = new HashSet<>();
 
     @JsonBackReference
-    @OneToMany(mappedBy = "initiative",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "initiative", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Services> services = new HashSet<>();
-
 
     public Long getId() {
         return id;
@@ -107,7 +106,6 @@ public class Initiative {
         this.contact = contact;
     }
 
-
     public Initiative() {
         super();
     }
@@ -127,6 +125,5 @@ public class Initiative {
     public void setServices(Set<Services> services) {
         this.services = services;
     }
-
 
 }

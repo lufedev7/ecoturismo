@@ -43,8 +43,8 @@ public class ResourcesServices {
     @OneToMany(mappedBy = "resourcesServices",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<CommentsResourcesServices> commentsResourceServices = new HashSet<>();
 
-	
-	
+
+
 
 	public String getNameResource() {
 		return nameResource;
@@ -89,6 +89,20 @@ public class ResourcesServices {
 	public ResourcesServices() {
 	super();
     }
+
+	
+
+	public ResourcesServices(Long id, String nameResource, String url, String description, boolean typeResource,
+			String timeStamp, Services services, Set<CommentsResourcesServices> commentsResourceServices) {
+		this.id = id;
+		this.nameResource = nameResource;
+		this.url = url;
+		this.description = description;
+		this.typeResource = typeResource;
+		this.timeStamp = timeStamp;
+		this.services = services;
+		this.commentsResourceServices = commentsResourceServices;
+	}
 
 	public String getDescription() {
 		return description;

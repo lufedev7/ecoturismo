@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.OrganizationsDTO;
+import com.acapa.ecoturismo.dtos.OrganizationsDTOuse;
 import com.acapa.ecoturismo.dtos.OrganizationsResponse;
 import com.acapa.ecoturismo.services.OrganizationsServices;
 import com.acapa.ecoturismo.utils.appConst;
@@ -35,8 +36,9 @@ public class OrganizationsControllers {
         @RequestParam(value = "sortDir",defaultValue = appConst.Order_By_For_Dir,required = false)String sortDir){
         return organizationsServices.getOrganization(numberPage, measure, orderBy, sortDir);
      }
+
     @PostMapping
-    public ResponseEntity<OrganizationsDTO> saveOrganizations(@Valid @RequestBody OrganizationsDTO organizationsDTO){
+    public ResponseEntity<OrganizationsDTOuse> saveOrganizations(@Valid @RequestBody OrganizationsDTOuse organizationsDTO){
         return new ResponseEntity<>(organizationsServices.createOrganization(organizationsDTO),HttpStatus.CREATED);
     }
     @GetMapping("/{id}")

@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.ResourcesAttractivesDTO;
 import com.acapa.ecoturismo.services.ResourcesAttractivesServices;
+import com.acapa.ecoturismo.utils.appConst;
 
 import jakarta.validation.Valid;
 
@@ -55,6 +57,16 @@ public ResponseEntity<ResourcesAttractivesDTO> getResourcesAttractivesById(@Path
  @PathVariable(value = "resourcesattractivesId") Long resourcesattractivesId){
     resourcesAttractivesServices.deleteResourceAttractives(attractivesId, resourcesattractivesId);
     return new ResponseEntity<>("Resource service  Delete succesfully",HttpStatus.OK);
+ }
+
+ @GetMapping("/attractives/resourcesattractives/all")
+ public List<ResourcesAttractivesDTO> listAllResourcesAttractives(
+         @RequestParam(value = "nomPage", defaultValue = appConst.Mesure_Page_For_Default, required = false) int numberPage,
+         @RequestParam(value = "pageSize", defaultValue = appConst.Number_Page_For_Default, required = false) int measure,
+         @RequestParam(value = "sortBy", defaultValue = appConst.Order_By_For_Default, required = false) String orderBy,
+         @RequestParam(value = "sortDir", defaultValue = appConst.Order_By_For_Dir, required = false) String sortDir) {
+
+     return resourcesAttractivesServices.getAllResourceAttractives(numberPage, measure, orderBy, sortDir);
  }
 
 }

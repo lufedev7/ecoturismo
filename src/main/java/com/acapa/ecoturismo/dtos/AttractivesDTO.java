@@ -11,6 +11,22 @@ public class AttractivesDTO {
     private String nameAttractive;
     private String descriptionAttractive;
     private boolean featured;
+   // private TypesAttractivesDTO typeAttractive;
+  // private InitiativeDTO initiative;
+
+
+     /* public TypesAttractivesDTO getTypeAttractive() {
+        return typeAttractive;
+    }
+    public void setTypeAttractive(TypesAttractivesDTO typeAttractive) {
+        this.typeAttractive = typeAttractive;
+    }
+    public InitiativeDTO getInitiative() {
+        return initiative;
+    }
+    public void setInitiative(InitiativeDTO initiative) {
+        this.initiative = initiative;
+    }*/
     public boolean isFeatured() {
         return featured;
     }
@@ -38,5 +54,6 @@ public class AttractivesDTO {
     public AttractivesDTO() {
     super();
     }
+
 
 }

@@ -1,13 +1,12 @@
 package com.acapa.ecoturismo.dtos;
 
-import com.acapa.ecoturismo.entitys.ResourcesAttractives;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class CommentsResourcesAttractivesDTO {
-    
+
     private long id;
     @NotEmpty
     @Size(min = 2, message= "comments body must have at least two characters")
@@ -21,8 +20,11 @@ public class CommentsResourcesAttractivesDTO {
     @NotEmpty
     @Size(min = 2, message= "username img must have at least two characters")
     private String urlImgSession;
+	@NotEmpty
+    @Size(min = 2, message= "ingrese una hora adecuada")
+    private String timeStamp;
 
-    private ResourcesAttractives resourcesAttractives;
+
 
 	public long getId() {
 		return id;
@@ -64,15 +66,18 @@ public class CommentsResourcesAttractivesDTO {
 		this.urlImgSession = urlImgSession;
 	}
 
-	public ResourcesAttractives getResourcesAttractives() {
-		return resourcesAttractives;
+
+
+	public String getTimeStamp() {
+		return timeStamp;
 	}
 
-	public void setResourcesAttractives(ResourcesAttractives resourcesAttractives) {
-		this.resourcesAttractives = resourcesAttractives;
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
 	}
-
-
+	public CommentsResourcesAttractivesDTO() {
+		super();
+		}
 
 
 

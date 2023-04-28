@@ -26,7 +26,7 @@ public class ResourcesAttractives {
     private Long id;
     @Column(name = "nameresource", nullable = false, length = 100)
     private String nameResource;
-   
+
 	@Column(name = "description", nullable = false, length = 100)
     private String description;
 	@Column(name = "timestamp", nullable = false, length = 100)
@@ -40,10 +40,11 @@ public class ResourcesAttractives {
     @JoinColumn(name = "attractive_id",nullable = false)
     private Attractives attractive;
 
+
     @JsonBackReference
     @OneToMany(mappedBy = "resourcesAttractives",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<CommentsResourcesAttractives> commentsResourceAttractives = new HashSet<>();
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -52,7 +53,7 @@ public class ResourcesAttractives {
 		this.description = description;
 	}
 
-	
+
 
 	public String getNameResource() {
 		return nameResource;
@@ -62,7 +63,7 @@ public class ResourcesAttractives {
 		this.nameResource = nameResource;
 	}
 
-	
+
 
 	public boolean isTypeResource() {
 		return typeResource;
@@ -114,6 +115,19 @@ public class ResourcesAttractives {
 
 	public void setLinkResource(String linkResource) {
 		this.linkResource = linkResource;
+	}
+
+	public ResourcesAttractives(Long id, String nameResource, String description, String timeStamp, String linkResource,
+			boolean typeResource, Attractives attractive,
+			Set<CommentsResourcesAttractives> commentsResourceAttractives) {
+		this.id = id;
+		this.nameResource = nameResource;
+		this.description = description;
+		this.timeStamp = timeStamp;
+		this.linkResource = linkResource;
+		this.typeResource = typeResource;
+		this.attractive = attractive;
+		this.commentsResourceAttractives = commentsResourceAttractives;
 	}
 
 

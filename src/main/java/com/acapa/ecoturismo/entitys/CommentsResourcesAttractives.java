@@ -25,7 +25,8 @@ public class CommentsResourcesAttractives {
     private String name;
     @Column(name = "urlImgsession", nullable = false, length = 100)
     private String urlImgSession;
-
+	@Column(name = "timestamp", nullable = false, length = 100)
+    private String timeStamp;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resourcesattractives_id",nullable = false)
     private ResourcesAttractives resourcesAttractives;
@@ -81,5 +82,13 @@ public class CommentsResourcesAttractives {
 	public CommentsResourcesAttractives() {
 	super();
     }
+
+	public String getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
+	}
     
 }

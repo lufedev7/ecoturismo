@@ -5,6 +5,10 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -100,5 +104,19 @@ public class ResourcesAttractivesAttractivesImpl implements ResourcesAttractives
     }
     private ResourcesAttractives mapearEntity(ResourcesAttractivesDTO resourcesAttractivesDTO){
         return modelMapper.map(resourcesAttractivesDTO,ResourcesAttractives.class);
+    }
+
+    @Override
+    public List<ResourcesAttractivesDTO> getAllResourceAttractives(int numberPage, int measure, String orderBy,
+            String sortDir) {
+                Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(orderBy).ascending()
+                : Sort.by(orderBy).descending();
+
+        Pageable pageable = PageRequest.of(numberPage, measure, sort);
+        Page<ResourcesAttractives> resourcesAttractives = resourcesAttractivesRepository.findAll(pageable);
+        List<ResourcesAttractives> listResourcesAttractives = resourcesAttractives.getContent();
+
+        return  listResourcesAttractives.stream().map(this::mapearDTO)
+        .collect(Collectors.toList());
     }
 }

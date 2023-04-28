@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.ContactDTO;
+import com.acapa.ecoturismo.dtos.ContactDTOUse;
 import com.acapa.ecoturismo.services.contactServices;
 
 import jakarta.validation.Valid;
@@ -24,25 +25,31 @@ import jakarta.validation.Valid;
 public class ContactControllers {
     @Autowired
     private contactServices contactServices;
+
     @PostMapping
-    public ResponseEntity<ContactDTO> saveContact(@RequestBody ContactDTO contactDTO) {
+    public ResponseEntity<ContactDTOUse> saveContact(@RequestBody ContactDTOUse contactDTO) {
         return new ResponseEntity<>(contactServices.createContact(contactDTO), HttpStatus.CREATED);
     }
+
     @GetMapping
-    public List<ContactDTO> getAllContacts(){
+    public List<ContactDTO> getAllContacts() {
         return contactServices.getAllContact();
     }
+
     @GetMapping("/{idContact}")
-    public ResponseEntity<ContactDTO> getContactById(@PathVariable(name ="idContact") long idContact){
+    public ResponseEntity<ContactDTO> getContactById(@PathVariable(name = "idContact") long idContact) {
         return ResponseEntity.ok(contactServices.getContactById(idContact));
     }
+
     @PutMapping("/{idContact}")
-    public ResponseEntity <ContactDTO> updateContact(@Valid @RequestBody ContactDTO contactDTO, @PathVariable(name="idContact")long idContact){
-        return new ResponseEntity<>(contactServices.updateContact(idContact, contactDTO),HttpStatus.OK);
+    public ResponseEntity<ContactDTOUse> updateContact(@Valid @RequestBody ContactDTOUse contactDTO,
+            @PathVariable(name = "idContact") long idContact) {
+        return new ResponseEntity<>(contactServices.updateContact(idContact, contactDTO), HttpStatus.OK);
     }
+
     @DeleteMapping("/{idContact}")
-    public ResponseEntity<String>deleteContact(@PathVariable(name = "idContact")long idContact){
+    public ResponseEntity<String> deleteContact(@PathVariable(name = "idContact") long idContact) {
         contactServices.deleteContact(idContact);
-        return new ResponseEntity<>("Contacto eliminado correctamente",HttpStatus.OK);
+        return new ResponseEntity<>("Contacto eliminado correctamente", HttpStatus.OK);
     }
 }

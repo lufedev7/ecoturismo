@@ -10,4 +10,5 @@ public interface ResourcesServicesServices {
     public ResourcesServicesDTO getResourceServiceId(Long idServices, Long idResourceServices);
     public ResourcesServicesDTO updateResourceService(Long servicesId, Long idResourceServices, ResourcesServicesDTO resourcesServicesDTO);
     public void deleteResourceService(Long servicesId, Long resourcesServicesId);
+    public List<ResourcesServicesDTO> getAllResourceServices(int numberPage,int  measure, String orderBy, String sortDir);
 }
