@@ -45,6 +45,18 @@ public class prueba {
     @OneToMany(mappedBy = "prueba", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Attractives> attractives = new HashSet<>();
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "prueba", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Services> services = new HashSet<>();
+
+    public Set<Services> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Services> services) {
+        this.services = services;
+    }
+
     public Set<Attractives> getAttractives() {
         return attractives;
     }

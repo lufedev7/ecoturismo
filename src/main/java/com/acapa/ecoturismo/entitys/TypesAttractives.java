@@ -16,19 +16,23 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "typesattractives", uniqueConstraints = { @UniqueConstraint(columnNames={"typeattractives"})})
+@Table(name = "typesattractives", uniqueConstraints = { @UniqueConstraint(columnNames = { "typeattractives" }) })
 public class TypesAttractives {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "typeattractives", nullable = false, length = 100)
     private String typeAttractives;
     @Column(name = "descriptiontype", nullable = false, length = 100)
     private String descriptionType;
-    
-    @JsonBackReference
-    @OneToMany(mappedBy = "typesAttractive",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<Attractives> attractives = new HashSet<>();
+
+    /*
+     * @JsonBackReference
+     * 
+     * @OneToMany(mappedBy = "typesAttractive",cascade =
+     * CascadeType.ALL,orphanRemoval = true)
+     * private Set<Attractives> attractives = new HashSet<>();
+     */
 
     public long getId() {
         return id;
@@ -54,16 +58,18 @@ public class TypesAttractives {
         this.descriptionType = descriptionType;
     }
 
-    public Set<Attractives> getAttractives() {
-        return attractives;
-    }
-
-    public void setAttractives(Set<Attractives> attractives) {
-        this.attractives = attractives;
-    }
+    /*
+     * public Set<Attractives> getAttractives() {
+     * return attractives;
+     * }
+     * 
+     * public void setAttractives(Set<Attractives> attractives) {
+     * this.attractives = attractives;
+     * }
+     */
 
     public TypesAttractives() {
-    super();
+        super();
     }
-    
+
 }

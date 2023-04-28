@@ -22,6 +22,15 @@ public class PruebaDTO {
     private VeredaDTOUse vereda;
     private ContactDTOUse contact;
     private Set<AttractivesDTOUse> attractives;
+    private Set<ServicesDTOUse> services;
+
+    public Set<ServicesDTOUse> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<ServicesDTOUse> services) {
+        this.services = services;
+    }
 
     public Set<AttractivesDTOUse> getAttractives() {
         return attractives;

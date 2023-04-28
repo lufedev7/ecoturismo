@@ -19,11 +19,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "services", uniqueConstraints = { @UniqueConstraint(columnNames={"servicesname"})})
+@Table(name = "services", uniqueConstraints = { @UniqueConstraint(columnNames = { "servicesname" }) })
 public class Services {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "servicesname", nullable = false, length = 100)
     private String servicesName;
@@ -34,21 +34,25 @@ public class Services {
     @Column(name = "featured", nullable = false, length = 200)
     private boolean featured;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "initiative_id", nullable = false)
+    private prueba prueba;
+
+    public prueba getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(prueba prueba) {
+        this.prueba = prueba;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "initiative_id",nullable = false)
-    private Initiative initiative;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "typeservices_id",nullable = false)
+    @JoinColumn(name = "typeservices_id", nullable = false)
     private TypesServices typesservices;
 
-
     @JsonBackReference
-    @OneToMany(mappedBy = "services",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "services", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ResourcesServices> resourceServices = new HashSet<>();
-
 
     public String getServicesName() {
         return servicesName;
@@ -74,16 +78,8 @@ public class Services {
         this.description = description;
     }
 
-    public Initiative getInitiative() {
-        return initiative;
-    }
-
-    public void setInitiative(Initiative initiative) {
-        this.initiative = initiative;
-    }
-
     public Services() {
-    super();
+        super();
     }
 
     public boolean isFeatured() {
@@ -94,13 +90,13 @@ public class Services {
         this.featured = featured;
     }
 
-	public Set<ResourcesServices> getResourceServices() {
-		return resourceServices;
-	}
+    public Set<ResourcesServices> getResourceServices() {
+        return resourceServices;
+    }
 
-	public void setResourceServices(Set<ResourcesServices> resourceServices) {
-		this.resourceServices = resourceServices;
-	}
+    public void setResourceServices(Set<ResourcesServices> resourceServices) {
+        this.resourceServices = resourceServices;
+    }
 
     public Long getId() {
         return id;
@@ -117,6 +113,5 @@ public class Services {
     public void setTypesservices(TypesServices typesservices) {
         this.typesservices = typesservices;
     }
-
 
 }

@@ -36,9 +36,12 @@ public class Attractives {
     @JoinColumn(name = "initiative_id", nullable = false)
     private prueba prueba;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "typeattractive_id", nullable = false)
-    private TypesAttractives typesAttractive;
+    /*
+     * @ManyToOne(fetch = FetchType.LAZY)
+     * 
+     * @JoinColumn(name = "typeattractive_id", nullable = false)
+     * private TypesAttractives typesAttractive;
+     */
 
     @JsonBackReference
     @OneToMany(mappedBy = "attractive", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -80,13 +83,15 @@ public class Attractives {
         super();
     }
 
-    public TypesAttractives getTypesAttractive() {
-        return typesAttractive;
-    }
-
-    public void setTypesAttractive(TypesAttractives typesAttractive) {
-        this.typesAttractive = typesAttractive;
-    }
+    /*
+     * public TypesAttractives getTypesAttractive() {
+     * return typesAttractive;
+     * }
+     * 
+     * public void setTypesAttractive(TypesAttractives typesAttractive) {
+     * this.typesAttractive = typesAttractive;
+     * }
+     */
 
     public boolean isFeatured() {
         return featured;
