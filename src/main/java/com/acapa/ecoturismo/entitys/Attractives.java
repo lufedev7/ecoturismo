@@ -36,16 +36,21 @@ public class Attractives {
     @JoinColumn(name = "initiative_id", nullable = false)
     private prueba prueba;
 
-    /*
-     * @ManyToOne(fetch = FetchType.LAZY)
-     * 
-     * @JoinColumn(name = "typeattractive_id", nullable = false)
-     * private TypesAttractives typesAttractive;
-     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "typeattractive_id", nullable = false)
+    private TypesAttractives typesAttractives;
 
     @JsonBackReference
     @OneToMany(mappedBy = "attractive", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ResourcesAttractives> resourceAttractives = new HashSet<>();
+
+    public TypesAttractives getTypesAttractives() {
+        return typesAttractives;
+    }
+
+    public void setTypesAttractives(TypesAttractives typesAttractives) {
+        this.typesAttractives = typesAttractives;
+    }
 
     public prueba getPrueba() {
         return prueba;
@@ -82,16 +87,6 @@ public class Attractives {
     public Attractives() {
         super();
     }
-
-    /*
-     * public TypesAttractives getTypesAttractive() {
-     * return typesAttractive;
-     * }
-     * 
-     * public void setTypesAttractive(TypesAttractives typesAttractive) {
-     * this.typesAttractive = typesAttractive;
-     * }
-     */
 
     public boolean isFeatured() {
         return featured;

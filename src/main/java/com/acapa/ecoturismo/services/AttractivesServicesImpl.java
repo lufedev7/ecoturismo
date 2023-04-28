@@ -29,10 +29,9 @@ public class AttractivesServicesImpl implements AttractivesServices {
     private AttractivesRepository attractivesRepository;
     @Autowired
     private InitiativeRepository initiativeRepository;
-    /*
-     * @Autowired
-     * private TypesAttractivesRepository typesAttractivesRepository;
-     */
+
+    @Autowired
+    private TypesAttractivesRepository typesAttractivesRepository;
 
     @Override
     public AttractivesDTOUse createAttractive(Long initiativeId, Long typeAttractiveId,
@@ -43,15 +42,11 @@ public class AttractivesServicesImpl implements AttractivesServices {
                 .orElseThrow(() -> new ResourceNotFoundException("Esta  Initiatives no existe con ", "id",
                         initiativeId));
 
-        /*
-         * TypesAttractives typeAttractive =
-         * typesAttractivesRepository.findById(typeAttractiveId)
-         * .orElseThrow(() -> new
-         * ResourceNotFoundException("Este TypeAttractiveo no existe con ", "id",
-         * typeAttractiveId));
-         */
+        TypesAttractives typeAttractive = typesAttractivesRepository.findById(typeAttractiveId)
+                .orElseThrow(() -> new ResourceNotFoundException("Este TypeAttractiveo no existe con ", "id",
+                        typeAttractiveId));
 
-        // attractives.setTypesAttractive(typeAttractive);
+        attractives.setTypesAttractives(typeAttractive);
         attractives.setPrueba(inittiatives);
         Attractives newAttractives = attractivesRepository.save(attractives);
         return mapearDTOUse(newAttractives);

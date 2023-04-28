@@ -3,11 +3,16 @@ package com.acapa.ecoturismo.services;
 import java.util.List;
 
 import com.acapa.ecoturismo.dtos.TypesAttractivesDTO;
+import com.acapa.ecoturismo.dtos.TypesAttractivesDTOUse;
 
 public interface TypeAttractivesServices {
-    public TypesAttractivesDTO createTypeAttractives(TypesAttractivesDTO typeAttractiveTO);
+    public TypesAttractivesDTOUse createTypeAttractives(TypesAttractivesDTOUse typeAttractiveTO);
+
     public List<TypesAttractivesDTO> getAllTypeAttractive();
+
     public TypesAttractivesDTO getTypeAttractiveById(Long idAttractive);
-    public TypesAttractivesDTO updateTypeAttractive(Long idtypeAttractive, TypesAttractivesDTO typeAttractiveDTO);
-    public void deleteTypeAttractive( Long typeAttractiveId);
+
+    public TypesAttractivesDTOUse updateTypeAttractive(Long idtypeAttractive, TypesAttractivesDTOUse typeAttractiveDTO);
+
+    public void deleteTypeAttractive(Long typeAttractiveId);
 }

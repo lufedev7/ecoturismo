@@ -11,7 +11,16 @@ public class AttractivesDTO {
     private String nameAttractive;
     private String descriptionAttractive;
     private boolean featured;
-    // private TypesAttractivesDTO typeAttractive;
+    private TypesAttractivesDTOUse typesAttractives;
+
+    public TypesAttractivesDTOUse getTypesAttractives() {
+        return typesAttractives;
+    }
+
+    public void setTypesAttractives(TypesAttractivesDTOUse typesAttractives) {
+        this.typesAttractives = typesAttractives;
+    }
+
     private pruebaDTOUse prueba;
 
     public pruebaDTOUse getPrueba() {
@@ -22,14 +31,6 @@ public class AttractivesDTO {
         this.prueba = prueba;
     }
 
-    /*
-     * public TypesAttractivesDTO getTypeAttractive() {
-     * return typeAttractive;
-     * }
-     * public void setTypeAttractive(TypesAttractivesDTO typeAttractive) {
-     * this.typeAttractive = typeAttractive;
-     * }
-     */
     public boolean isFeatured() {
         return featured;
     }

@@ -25,14 +25,17 @@ public class TypesAttractives {
     private String typeAttractives;
     @Column(name = "descriptiontype", nullable = false, length = 100)
     private String descriptionType;
+    @JsonBackReference
+    @OneToMany(mappedBy = "typesAttractives", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Attractives> attractives = new HashSet<>();
 
-    /*
-     * @JsonBackReference
-     * 
-     * @OneToMany(mappedBy = "typesAttractive",cascade =
-     * CascadeType.ALL,orphanRemoval = true)
-     * private Set<Attractives> attractives = new HashSet<>();
-     */
+    public Set<Attractives> getAttractives() {
+        return attractives;
+    }
+
+    public void setAttractives(Set<Attractives> attractives) {
+        this.attractives = attractives;
+    }
 
     public long getId() {
         return id;
@@ -57,16 +60,6 @@ public class TypesAttractives {
     public void setDescriptionType(String descriptionType) {
         this.descriptionType = descriptionType;
     }
-
-    /*
-     * public Set<Attractives> getAttractives() {
-     * return attractives;
-     * }
-     * 
-     * public void setAttractives(Set<Attractives> attractives) {
-     * this.attractives = attractives;
-     * }
-     */
 
     public TypesAttractives() {
         super();

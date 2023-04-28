@@ -138,4 +138,10 @@ public class InitiativeServicesImpl implements InitiativeServices {
         return modelMapper.map(initiativeDTO, prueba.class);
     }
 
+    @Override
+    public List<PruebaDTO> getAllInitiativestives() {
+        List<prueba> initiatives = initiativeRepository.findAll();
+        return initiatives.stream().map(cont -> mapearDTO(cont)).collect(Collectors.toList());
+    }
+
 }

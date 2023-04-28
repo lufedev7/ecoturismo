@@ -59,6 +59,11 @@ public class InitiativeControllers {
         return new ResponseEntity<>(initiativeDTO, HttpStatus.OK);
     }
 
+    @GetMapping("vereda/allinitiatives")
+    public List<PruebaDTO> getAllInitiatives() {
+        return initiativeServices.getAllInitiativestives();
+    }
+
     @PutMapping("/vereda/{veredaId}/initiative/{initiativeId}")
     public ResponseEntity<pruebaDTOUse> updateInitiative(@PathVariable(value = "veredaId") Long veredaId,
 

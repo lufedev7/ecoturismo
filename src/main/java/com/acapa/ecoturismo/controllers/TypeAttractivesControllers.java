@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.TypesAttractivesDTO;
+import com.acapa.ecoturismo.dtos.TypesAttractivesDTOUse;
 import com.acapa.ecoturismo.services.TypeAttractivesServices;
 
 import jakarta.validation.Valid;
@@ -26,24 +27,34 @@ public class TypeAttractivesControllers {
     private TypeAttractivesServices typeAttractivesServices;
 
     @PostMapping
-    public ResponseEntity<TypesAttractivesDTO> saveTypeServices(@RequestBody TypesAttractivesDTO typesAttractivesDTO) {
-        return new ResponseEntity<>(typeAttractivesServices.createTypeAttractives(typesAttractivesDTO), HttpStatus.CREATED);
+    public ResponseEntity<TypesAttractivesDTOUse> saveTypeServices(
+            @RequestBody TypesAttractivesDTOUse typesAttractivesDTO) {
+        return new ResponseEntity<>(typeAttractivesServices.createTypeAttractives(typesAttractivesDTO),
+                HttpStatus.CREATED);
     }
+
     @GetMapping
-    public List<TypesAttractivesDTO> getAlltypesAttractives(){
+    public List<TypesAttractivesDTO> getAlltypesAttractives() {
         return typeAttractivesServices.getAllTypeAttractive();
     }
+
     @GetMapping("/{idTypeAttractive}")
-    public ResponseEntity<TypesAttractivesDTO> getTypeAttractiveById(@PathVariable(name ="idTypeAttractive") long idTypeAttractive){
+    public ResponseEntity<TypesAttractivesDTO> getTypeAttractiveById(
+            @PathVariable(name = "idTypeAttractive") long idTypeAttractive) {
         return ResponseEntity.ok(typeAttractivesServices.getTypeAttractiveById(idTypeAttractive));
     }
+
     @PutMapping("/{idTypeAttractive}")
-    public ResponseEntity <TypesAttractivesDTO> updateTypeAttractive(@Valid @RequestBody TypesAttractivesDTO typesAttractivesDTO, @PathVariable(name="idTypeAttractive")long idTypeAttractive){
-        return new ResponseEntity<>(typeAttractivesServices.updateTypeAttractive(idTypeAttractive, typesAttractivesDTO),HttpStatus.OK);
+    public ResponseEntity<TypesAttractivesDTOUse> updateTypeAttractive(
+            @Valid @RequestBody TypesAttractivesDTOUse typesAttractivesDTO,
+            @PathVariable(name = "idTypeAttractive") long idTypeAttractive) {
+        return new ResponseEntity<>(typeAttractivesServices.updateTypeAttractive(idTypeAttractive, typesAttractivesDTO),
+                HttpStatus.OK);
     }
+
     @DeleteMapping("/{idTypeAttractive}")
-    public ResponseEntity<String>deleteTypeAttractive(@PathVariable(name = "idTypeAttractive")long idTypeAttractive){
+    public ResponseEntity<String> deleteTypeAttractive(@PathVariable(name = "idTypeAttractive") long idTypeAttractive) {
         typeAttractivesServices.deleteTypeAttractive(idTypeAttractive);
-        return new ResponseEntity<>("Tipo de Attractivo eliminado correctamente",HttpStatus.OK);
+        return new ResponseEntity<>("Tipo de Attractivo eliminado correctamente", HttpStatus.OK);
     }
 }
