@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.acapa.ecoturismo.dtos.AttractivesDTO;
 import com.acapa.ecoturismo.dtos.AttractivesDTOUse;
 import com.acapa.ecoturismo.entitys.Attractives;
-import com.acapa.ecoturismo.entitys.Initiative;
 import com.acapa.ecoturismo.entitys.TypesAttractives;
 import com.acapa.ecoturismo.entitys.prueba;
 import com.acapa.ecoturismo.exceptions.BlogAppException;

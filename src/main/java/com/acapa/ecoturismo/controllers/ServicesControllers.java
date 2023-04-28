@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.ServicesDTO;
+import com.acapa.ecoturismo.dtos.ServicesDTOUse;
 import com.acapa.ecoturismo.dtos.TypeServicesDTO;
 import com.acapa.ecoturismo.services.ServicesServices;
 
@@ -27,42 +28,42 @@ public class ServicesControllers {
     private ServicesServices servicesServices;
 
     @PostMapping("/initiatives/{initiativeId}/services/{typeServiceId}")
-    public ResponseEntity<ServicesDTO> saveService( @PathVariable(value = "initiativeId")Long initiativeId,
-    @PathVariable(value = "typeServiceId")Long typeServiceId,
-    @Valid @RequestBody ServicesDTO servicesDTO){
-        return new ResponseEntity<>(servicesServices.createServices(initiativeId, typeServiceId, servicesDTO),HttpStatus.CREATED);
+    public ResponseEntity<ServicesDTOUse> saveService(@PathVariable(value = "initiativeId") Long initiativeId,
+            @PathVariable(value = "typeServiceId") Long typeServiceId,
+            @Valid @RequestBody ServicesDTOUse servicesDTO) {
+        return new ResponseEntity<>(servicesServices.createServices(initiativeId, typeServiceId, servicesDTO),
+                HttpStatus.CREATED);
     }
-    @PostMapping("/initiative/{initiativeId}/service/{typeServiceId}")
-    public ResponseEntity<TypeServicesDTO> prueba( @PathVariable(value = "initiativeId")Long initiativeId,
-    @PathVariable(value = "typeServiceId")Long typeServiceId,
-    @Valid @RequestBody ServicesDTO servicesDTO){
-        return new ResponseEntity<>(servicesServices.prueba(initiativeId, typeServiceId, servicesDTO),HttpStatus.CREATED);
-    }
-
 
     @GetMapping("/initiatives/{initiativeId}/services")
-    public List<ServicesDTO> listServicesByInitiative(@PathVariable(value = "initiativeId") Long initiativeId){
+    public List<ServicesDTO> listServicesByInitiative(@PathVariable(value = "initiativeId") Long initiativeId) {
         return servicesServices.getserviceForInitiativeId(initiativeId);
     }
+
     @GetMapping("/initiatives/{initiativeId}/services/{serviceId}")
     public ResponseEntity<ServicesDTO> getServiceById(@PathVariable(value = "initiativeId") Long initiativeId,
-    @PathVariable(value = "serviceId") Long serviceId){
-      ServicesDTO servicesDTO = servicesServices.getServiceById(initiativeId, serviceId);
-       return new ResponseEntity<>(servicesDTO,HttpStatus.OK);
+            @PathVariable(value = "serviceId") Long serviceId) {
+        ServicesDTO servicesDTO = servicesServices.getServiceById(initiativeId, serviceId);
+        return new ResponseEntity<>(servicesDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/initiatives/allservices")
+    public List<ServicesDTO> getAllservices() {
+        return servicesServices.getAllservice();
     }
 
     @PutMapping("/initiatives/{initiativeId}/services/{serviceId}")
-     public ResponseEntity<ServicesDTO> updateServicesBy( @PathVariable(value = "initiativeId") Long initiativeId,
-     @PathVariable(value = "serviceId") Long serviceId,@Valid @RequestBody ServicesDTO servicesDTO){
-        ServicesDTO serviceUpdate = servicesServices.updateService(initiativeId, serviceId, servicesDTO);
-        return new ResponseEntity<>(serviceUpdate,HttpStatus.OK);
+    public ResponseEntity<ServicesDTOUse> updateServicesBy(@PathVariable(value = "initiativeId") Long initiativeId,
+            @PathVariable(value = "serviceId") Long serviceId, @Valid @RequestBody ServicesDTOUse servicesDTO) {
+        ServicesDTOUse serviceUpdate = servicesServices.updateService(initiativeId, serviceId, servicesDTO);
+        return new ResponseEntity<>(serviceUpdate, HttpStatus.OK);
 
-     }
+    }
 
-     @DeleteMapping("/initiatives/{initiativeId}/services/{serviceId}")
-     public ResponseEntity<String> deleteservice(@PathVariable(value = "initiativeId") Long initiativeId,
-     @PathVariable(value = "serviceId") Long serviceId){
-           servicesServices.deleteService(initiativeId, serviceId);
-        return new ResponseEntity<>("attractive  Delete succesfully",HttpStatus.OK);
-     }
+    @DeleteMapping("/initiatives/{initiativeId}/services/{serviceId}")
+    public ResponseEntity<String> deleteservice(@PathVariable(value = "initiativeId") Long initiativeId,
+            @PathVariable(value = "serviceId") Long serviceId) {
+        servicesServices.deleteService(initiativeId, serviceId);
+        return new ResponseEntity<>("attractive  Delete succesfully", HttpStatus.OK);
+    }
 }

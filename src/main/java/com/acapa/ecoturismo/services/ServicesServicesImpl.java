@@ -8,13 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.acapa.ecoturismo.dtos.ServicesDTO;
+import com.acapa.ecoturismo.dtos.ServicesDTOUse;
 import com.acapa.ecoturismo.dtos.TypeServicesDTO;
-import com.acapa.ecoturismo.entitys.Initiative;
 import com.acapa.ecoturismo.entitys.Services;
 import com.acapa.ecoturismo.entitys.TypesServices;
+import com.acapa.ecoturismo.entitys.prueba;
 import com.acapa.ecoturismo.exceptions.BlogAppException;
 import com.acapa.ecoturismo.exceptions.ResourceNotFoundException;
 import com.acapa.ecoturismo.repository.InitiativeRepository;
+import com.acapa.ecoturismo.repository.ServicesRepository;
 //import com.acapa.ecoturismo.repository.ServicesRepository;
 import com.acapa.ecoturismo.repository.TypesServicesRepository;
 
@@ -23,167 +25,123 @@ public class ServicesServicesImpl implements ServicesServices {
 
   @Autowired
   private ModelMapper modelMapper;
-  // @Autowired
-  // private ServicesRepository servicesRepository;
-  /*
-   * @Autowired
-   * private TypesServicesRepository typesServicesRepository;
-   */
+  @Autowired
+  private ServicesRepository servicesRepository;
+
+  @Autowired
+  private TypesServicesRepository typesServicesRepository;
+
   @Autowired
   private InitiativeRepository initiativeRepository;
 
   @Override
-  public ServicesDTO createServices(Long initiativeId, Long typeServiceId, ServicesDTO serviceDTO) {
+  public ServicesDTOUse createServices(Long initiativeId, Long typeServiceId, ServicesDTOUse serviceDTO) {
 
     Services services = mapearEntity(serviceDTO);
 
-    /*
-     * Initiative inittiatives = initiativeRepository.findById(initiativeId)
-     * .orElseThrow(
-     * () -> new ResourceNotFoundException("Esta  Initiatives no existe con ", "id",
-     * initiativeId));
-     */
+    prueba inittiatives = initiativeRepository.findById(initiativeId)
+        .orElseThrow(
+            () -> new ResourceNotFoundException("Esta  Initiatives no existe con ", "id",
+                initiativeId));
 
-    /*
-     * TypesServices typeService = typesServicesRepository.findById(typeServiceId)
-     * .orElseThrow(() -> new
-     * ResourceNotFoundException("Este TypeAttractiveo no existe con ", "id",
-     * typeServiceId));
-     */
+    TypesServices typeService = typesServicesRepository.findById(typeServiceId)
+        .orElseThrow(() -> new ResourceNotFoundException("Este TypeAttractiveo no existe con ", "id",
+            typeServiceId));
 
-    // System.out.println("este es el type de services" + typeService);
-    // services.setTypesservices(typeService);
-    // services.setInitiative(inittiatives);
-    ServicesDTO servicesdto = mapearDTO(services);
-    // Services newServices = servicesRepository.save(services);
-    return null; // mapearDTO(newServices);
+    System.out.println("este es el type de services" + typeService);
+    services.setTypesservices(typeService);
+    services.setPrueba(inittiatives);
+    Services newServices = servicesRepository.save(services);
+    return mapearDTOUse(newServices);
   }
 
   @Override
   public List<ServicesDTO> getserviceForInitiativeId(long initiativeId) {
-    /*
-     * List<Services> services =
-     * servicesRepository.findByInitiativeId(initiativeId);
-     */
-    return null;// services.stream().map(this::mapearDTO).collect(Collectors.toList());
+
+    List<Services> services = servicesRepository.findBypruebaId(initiativeId);
+
+    return services.stream().map(this::mapearDTO).collect(Collectors.toList());
   }
 
   @Override
   public ServicesDTO getServiceById(Long idInitiative, Long idservice) {
 
-    /*
-     * Initiative initiatives = initiativeRepository.findById(idInitiative)
-     * .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
-     * idInitiative));
-     */
+    prueba initiatives = initiativeRepository.findById(idInitiative)
+        .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
+            idInitiative));
 
-    /*
-     * Services service = servicesRepository.findById(idservice).orElseThrow(
-     * () -> new
-     * ResourceNotFoundException("Este Servicio no se encuentra registrada con ",
-     * "id", idservice));
-     */
+    Services service = servicesRepository.findById(idservice).orElseThrow(
+        () -> new ResourceNotFoundException("Este Servicio no se encuentra registrada con ",
+            "id", idservice));
 
-    /*
-     * if (!service.getInitiative().getId().equals(initiatives.getId())) {
-     * throw new BlogAppException(HttpStatus.BAD_REQUEST,
-     * "el servicio no pertenece a la iniciativa");
-     * }
-     */
+    if (!service.getPrueba().getId().equals(initiatives.getId())) {
+      throw new BlogAppException(HttpStatus.BAD_REQUEST,
+          "el servicio no pertenece a la iniciativa");
+    }
 
-    return null;// mapearDTO(service);
+    return mapearDTO(service);
   }
 
   @Override
-  public ServicesDTO updateService(Long initiativeId, Long idService, ServicesDTO serviceDTO) {
+  public ServicesDTOUse updateService(Long initiativeId, Long idService, ServicesDTOUse serviceDTO) {
 
-    /*
-     * Initiative initiatives = initiativeRepository.findById(initiativeId)
-     * .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
-     * initiativeId));
-     */
+    prueba initiatives = initiativeRepository.findById(initiativeId)
+        .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
+            initiativeId));
 
-    /*
-     * Services service = servicesRepository.findById(idService).orElseThrow(
-     * () -> new
-     * ResourceNotFoundException("Este atractivo no se encuentra registrada con ",
-     * "id", idService));
-     * 
-     * 
-     * if (!service.getInitiative().getId().equals(initiatives.getId())) {
-     * throw new BlogAppException(HttpStatus.BAD_REQUEST,
-     * "el atractivo no pertenece a la iniciativa");
-     * }
-     */
+    Services service = servicesRepository.findById(idService).orElseThrow(
+        () -> new ResourceNotFoundException("Este atractivo no se encuentra registrada con ",
+            "id", idService));
 
-    /*
-     * service.setServicesName(serviceDTO.getServicesName());
-     * service.setDescription(serviceDTO.getDescription());
-     * service.setPricePerson(serviceDTO.getPricePerson());
-     * Services servicesUpdate = servicesRepository.save(service);
-     */
-    return null; // mapearDTO(servicesUpdate);
+    if (!service.getPrueba().getId().equals(initiatives.getId())) {
+      throw new BlogAppException(HttpStatus.BAD_REQUEST,
+          "el atractivo no pertenece a la iniciativa");
+    }
+
+    service.setServicesName(serviceDTO.getServicesName());
+    service.setDescription(serviceDTO.getDescription());
+    service.setPricePerson(serviceDTO.getPricePerson());
+    Services servicesUpdate = servicesRepository.save(service);
+
+    return mapearDTOUse(servicesUpdate);
   }
 
   @Override
   public void deleteService(Long initiativeId, Long serviceId) {
 
-    /*
-     * Initiative initiatives = initiativeRepository.findById(initiativeId)
-     * .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
-     * initiativeId));
-     * 
-     * Services service = servicesRepository.findById(serviceId).orElseThrow(
-     * () -> new
-     * ResourceNotFoundException("Este atractivo no se encuentra registrada con ",
-     * "id", serviceId));
-     * 
-     * 
-     * if (!service.getInitiative().getId().equals(initiatives.getId())) {
-     * throw new BlogAppException(HttpStatus.BAD_REQUEST,
-     * "el atractivo no pertenece a la iniciativa");
-     * }
-     * 
-     * servicesRepository.delete(service);
-     */
+    prueba initiatives = initiativeRepository.findById(initiativeId)
+        .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
+            initiativeId));
+
+    Services service = servicesRepository.findById(serviceId).orElseThrow(
+        () -> new ResourceNotFoundException("Este atractivo no se encuentra registrada con ",
+            "id", serviceId));
+
+    if (!service.getPrueba().getId().equals(initiatives.getId())) {
+      throw new BlogAppException(HttpStatus.BAD_REQUEST,
+          "el atractivo no pertenece a la iniciativa");
+    }
+
+    servicesRepository.delete(service);
+
   }
 
   private ServicesDTO mapearDTO(Services services) {
     return modelMapper.map(services, ServicesDTO.class);
   }
 
-  private Services mapearEntity(ServicesDTO servicesDTO) {
+  private ServicesDTOUse mapearDTOUse(Services services) {
+    return modelMapper.map(services, ServicesDTOUse.class);
+  }
+
+  private Services mapearEntity(ServicesDTOUse servicesDTO) {
     return modelMapper.map(servicesDTO, Services.class);
   }
 
-  // realizar prueba
-  private TypeServicesDTO mapearTSDTO(TypesServices typesServices) {
-    return modelMapper.map(typesServices, TypeServicesDTO.class);
-  }
-
   @Override
-  public TypeServicesDTO prueba(Long initiativeId, Long typeServiceId, ServicesDTO serviceDTO) {
-    Services services = mapearEntity(serviceDTO);
-
-    /*
-     * Initiative inittiatives = initiativeRepository.findById(initiativeId)
-     * .orElseThrow(
-     * () -> new ResourceNotFoundException("Esta  Initiatives no existe con ", "id",
-     * initiativeId));
-     */
-
-    /*
-     * TypesServices typeService = typesServicesRepository.findById(typeServiceId)
-     * .orElseThrow(() -> new
-     * ResourceNotFoundException("Este TypeAttractiveo no existe con ", "id",
-     * typeServiceId));
-     */
-
-    /*
-     * services.setTypesservices(typeService);
-     * services.setInitiative(inittiatives);
-     * Services newServices = servicesRepository.save(services);
-     */
-    return null;// mapearTSDTO(typeService);
+  public List<ServicesDTO> getAllservice() {
+    List<Services> services = servicesRepository.findAll();
+    return services.stream().map(cont -> mapearDTO(cont)).collect(Collectors.toList());
   }
+
 }
