@@ -12,6 +12,7 @@ import com.acapa.ecoturismo.dtos.ResourcesServicesDTO;
 import com.acapa.ecoturismo.dtos.appcontrollerdto.AppResponseDTO;
 import com.acapa.ecoturismo.services.appservices.AppServices;
 import com.acapa.ecoturismo.utils.appConst;
+
 @RestController
 @RequestMapping("/api/appcontroller")
 public class AppController {
@@ -19,15 +20,19 @@ public class AppController {
     private AppServices appServices;
 
     @GetMapping
-     public  AppResponseDTO listAppController(
-        @RequestParam(value = "nomPage",defaultValue = appConst.Mesure_Page_For_Default,required = false) int numberPage,
-        @RequestParam(value = "pageSize",defaultValue = appConst.Number_Page_For_Default,required = false) int measure,
-        @RequestParam(value = "sortBy",defaultValue = appConst.Order_By_For_Default,required = false) String orderBy,
-        @RequestParam(value = "sortDir",defaultValue = appConst.Order_By_For_Dir,required = false)String sortDir
-     ){
+    public AppResponseDTO listAppController(
+
+            @RequestParam(value = "nomPage", defaultValue = appConst.Mesure_Page_For_Default, required = false) int numberPage,
+
+            @RequestParam(value = "pageSize", defaultValue = appConst.Number_Page_For_Default, required = false) int measure,
+
+            @RequestParam(value = "sortBy", defaultValue = appConst.Order_By_For_Default, required = false) String orderBy,
+
+            @RequestParam(value = "sortDir", defaultValue = appConst.Order_By_For_Dir, required = false) String sortDir) {
         return appServices.getpageFeed(numberPage, measure, orderBy, sortDir);
-     }
-     @GetMapping("/services/resourceservices/alls")
+    }
+
+    @GetMapping("/allservices")
     public List<ResourcesServicesDTO> listAllResourcesServicesByservices() {
         return appServices.getAllResourceServices();
     }

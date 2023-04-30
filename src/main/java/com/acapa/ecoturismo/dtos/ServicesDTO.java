@@ -1,5 +1,7 @@
 package com.acapa.ecoturismo.dtos;
 
+import java.util.Set;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -16,6 +18,24 @@ public class ServicesDTO {
     private String description;
     private boolean featured;
     private pruebaDTOUse prueba;
+    private TypeServicesDTOUse typeServices;
+    private Set<ResourcesServicesUseDTO> resourceServices;
+
+    public Set<ResourcesServicesUseDTO> getResourceServices() {
+        return resourceServices;
+    }
+
+    public void setResourceServices(Set<ResourcesServicesUseDTO> resourceServices) {
+        this.resourceServices = resourceServices;
+    }
+
+    public TypeServicesDTOUse getTypeServices() {
+        return typeServices;
+    }
+
+    public void setTypeServices(TypeServicesDTOUse typeServices) {
+        this.typeServices = typeServices;
+    }
 
     public pruebaDTOUse getPrueba() {
         return prueba;

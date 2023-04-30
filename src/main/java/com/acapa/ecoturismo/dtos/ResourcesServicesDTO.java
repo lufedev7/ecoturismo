@@ -1,29 +1,26 @@
 package com.acapa.ecoturismo.dtos;
 
-
 import java.util.Set;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class ResourcesServicesDTO {
-    private long id;
-    @NotEmpty
-    @Size(min = 3, message = "El nombre del recurso debe de tener almenos 3 letras")
-    private String nameResource;
-    @NotEmpty
-    @Size(min = 3, message = "El url del recurso debe de tener almenos 3 letras")
-    private String url;
-    @NotEmpty
-    @Size(min = 3, message = "la descripción del recurso debe de tener almenos 3 letras")
-    private String description;
-    private boolean typeResource;
+	private long id;
+	@NotEmpty
+	@Size(min = 3, message = "El nombre del recurso debe de tener almenos 3 letras")
+	private String nameResource;
+	@NotEmpty
+	@Size(min = 3, message = "El url del recurso debe de tener almenos 3 letras")
+	private String url;
+	@NotEmpty
+	@Size(min = 3, message = "la descripción del recurso debe de tener almenos 3 letras")
+	private String description;
+	private boolean typeResource;
 	@Size(min = 3, message = "debe ingresar una hora")
-    private String timeStamp;
+	private String timeStamp;
 	private Set<CommentsResourceServicesDTO> comments;
-	private ServicesDTO services;
-	
-
+	private ServicesDTOUse services;
 
 	public long getId() {
 		return id;
@@ -65,7 +62,6 @@ public class ResourcesServicesDTO {
 		this.typeResource = typeResource;
 	}
 
-
 	public String getTimeStamp() {
 		return timeStamp;
 	}
@@ -82,13 +78,12 @@ public class ResourcesServicesDTO {
 		this.comments = comments;
 	}
 
-	public ServicesDTO getServices() {
+	public ServicesDTOUse getServices() {
 		return services;
 	}
 
-	public void setServices(ServicesDTO services) {
+	public void setServices(ServicesDTOUse services) {
 		this.services = services;
 	}
-
 
 }

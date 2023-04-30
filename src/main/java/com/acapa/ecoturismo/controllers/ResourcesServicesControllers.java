@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.ResourcesServicesDTO;
+import com.acapa.ecoturismo.dtos.ResourcesServicesUseDTO;
 import com.acapa.ecoturismo.services.ResourcesServicesServices;
 import com.acapa.ecoturismo.utils.appConst;
 
@@ -28,9 +29,9 @@ public class ResourcesServicesControllers {
     private ResourcesServicesServices resourcesServicesServices;
 
     @PostMapping("/services/{servicesId}/resourceservices")
-    public ResponseEntity<ResourcesServicesDTO> saveResourcesServices(
+    public ResponseEntity<ResourcesServicesUseDTO> saveResourcesServices(
             @PathVariable(value = "servicesId") Long servicesId,
-            @Valid @RequestBody ResourcesServicesDTO resourcesServicesDTO) {
+            @Valid @RequestBody ResourcesServicesUseDTO resourcesServicesDTO) {
         return new ResponseEntity<>(resourcesServicesServices.createResourceService(servicesId, resourcesServicesDTO),
                 HttpStatus.CREATED);
     }
@@ -53,11 +54,11 @@ public class ResourcesServicesControllers {
     }
 
     @PutMapping("/services/{servicesId}/resourceservices/{resourcesServicesId}")
-    public ResponseEntity<ResourcesServicesDTO> updateResourceService(
+    public ResponseEntity<ResourcesServicesUseDTO> updateResourceService(
             @PathVariable(value = "servicesId") Long servicesId,
             @PathVariable(value = "resourcesServicesId") Long resourcesServicesId,
-            @Valid @RequestBody ResourcesServicesDTO resourcesServicesDTO) {
-        ResourcesServicesDTO resourcesServicesUpdate = resourcesServicesServices
+            @Valid @RequestBody ResourcesServicesUseDTO resourcesServicesDTO) {
+        ResourcesServicesUseDTO resourcesServicesUpdate = resourcesServicesServices
                 .updateResourceService(servicesId, resourcesServicesId, resourcesServicesDTO);
         return new ResponseEntity<>(resourcesServicesUpdate, HttpStatus.OK);
 

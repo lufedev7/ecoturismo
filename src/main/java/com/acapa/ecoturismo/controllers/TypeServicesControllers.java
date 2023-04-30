@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.TypeServicesDTO;
+import com.acapa.ecoturismo.dtos.TypeServicesDTOUse;
 import com.acapa.ecoturismo.services.TypeServicesServices;
 
 import jakarta.validation.Valid;
@@ -26,25 +27,32 @@ public class TypeServicesControllers {
     private TypeServicesServices typeServicesServices;
 
     @PostMapping
-    public ResponseEntity<TypeServicesDTO> saveTypeServices(@RequestBody TypeServicesDTO typeServicesDTO) {
+    public ResponseEntity<TypeServicesDTOUse> saveTypeServices(@RequestBody TypeServicesDTOUse typeServicesDTO) {
         return new ResponseEntity<>(typeServicesServices.createTypeService(typeServicesDTO), HttpStatus.CREATED);
     }
+
     @GetMapping
-    public List<TypeServicesDTO> getAlltypesServices(){
+    public List<TypeServicesDTO> getAlltypesServices() {
         return typeServicesServices.getAllTypeService();
     }
+
     @GetMapping("/{idTypeService}")
-    public ResponseEntity<TypeServicesDTO> getTypeServiceById(@PathVariable(name ="idTypeService") long idTypeService){
+    public ResponseEntity<TypeServicesDTO> getTypeServiceById(
+            @PathVariable(name = "idTypeService") long idTypeService) {
         return ResponseEntity.ok(typeServicesServices.getTypeServiceById(idTypeService));
     }
+
     @PutMapping("/{idTypeService}")
-    public ResponseEntity <TypeServicesDTO> updateTypeService(@Valid @RequestBody TypeServicesDTO typeServicesDTO, @PathVariable(name="idTypeService")long idTypeService){
-        return new ResponseEntity<>(typeServicesServices.updateTypeService(idTypeService, typeServicesDTO),HttpStatus.OK);
+    public ResponseEntity<TypeServicesDTOUse> updateTypeService(@Valid @RequestBody TypeServicesDTOUse typeServicesDTO,
+            @PathVariable(name = "idTypeService") long idTypeService) {
+        return new ResponseEntity<>(typeServicesServices.updateTypeService(idTypeService, typeServicesDTO),
+                HttpStatus.OK);
     }
+
     @DeleteMapping("/{idTypeService}")
-    public ResponseEntity<String>deleteTypeService(@PathVariable(name = "idTypeService")long idTypeService){
+    public ResponseEntity<String> deleteTypeService(@PathVariable(name = "idTypeService") long idTypeService) {
         typeServicesServices.deleteTypeService(idTypeService);
-        return new ResponseEntity<>("Tipo de servicio eliminado correctamente",HttpStatus.OK);
+        return new ResponseEntity<>("Tipo de servicio eliminado correctamente", HttpStatus.OK);
     }
 
 }

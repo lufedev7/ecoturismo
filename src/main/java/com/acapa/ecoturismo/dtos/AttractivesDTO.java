@@ -1,5 +1,7 @@
 package com.acapa.ecoturismo.dtos;
 
+import java.util.Set;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -12,6 +14,15 @@ public class AttractivesDTO {
     private String descriptionAttractive;
     private boolean featured;
     private TypesAttractivesDTOUse typesAttractives;
+    private Set<ResourcesAttractivesDTOUse> resourceAttractives;
+
+    public Set<ResourcesAttractivesDTOUse> getResourceAttractives() {
+        return resourceAttractives;
+    }
+
+    public void setResourceAttractives(Set<ResourcesAttractivesDTOUse> resourceAttractives) {
+        this.resourceAttractives = resourceAttractives;
+    }
 
     public TypesAttractivesDTOUse getTypesAttractives() {
         return typesAttractives;

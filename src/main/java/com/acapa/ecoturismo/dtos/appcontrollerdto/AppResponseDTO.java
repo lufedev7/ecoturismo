@@ -8,60 +8,116 @@ import com.acapa.ecoturismo.dtos.ResourcesServicesDTO;
 public class AppResponseDTO {
     private List<ResourcesServicesDTO> resourceServices;
     private List<ResourcesAttractivesDTO> resourceAttractives;
-    private int numPage;
-    private int sizePage;
-    private long totalElement;
-    private int totalPage;
-    private boolean lateast;
-    
-    public int getNumPage() {
-        return numPage;
+
+    private int numPageServices;
+    private int sizePageServices;
+    private long totalElementServices;
+    private int totalPageServices;
+    private boolean lateastServices;
+    private int numPageAttractives;
+    private int sizePageAttractives;
+    private long totalElementAttractives;
+    private int totalPageAttractives;
+    private boolean lateastAttractives;
+
+    public int getNumPageServices() {
+        return numPageServices;
     }
-    public void setNumPage(int numPage) {
-        this.numPage = numPage;
+
+    public void setNumPageServices(int numPageServices) {
+        this.numPageServices = numPageServices;
     }
-    public int getSizePage() {
-        return sizePage;
+
+    public int getSizePageServices() {
+        return sizePageServices;
     }
-    public void setSizePage(int sizePage) {
-        this.sizePage = sizePage;
+
+    public void setSizePageServices(int sizePageServices) {
+        this.sizePageServices = sizePageServices;
     }
-    public long getTotalElement() {
-        return totalElement;
+
+    public long getTotalElementServices() {
+        return totalElementServices;
     }
-    public void setTotalElement(long totalElement) {
-        this.totalElement = totalElement;
+
+    public void setTotalElementServices(long totalElementServices) {
+        this.totalElementServices = totalElementServices;
     }
-    public int getTotalPage() {
-        return totalPage;
+
+    public int getTotalPageServices() {
+        return totalPageServices;
     }
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
+
+    public void setTotalPageServices(int totalPageServices) {
+        this.totalPageServices = totalPageServices;
     }
-    public boolean isLateast() {
-        return lateast;
+
+    public boolean isLateastServices() {
+        return lateastServices;
     }
-    public void setLateast(boolean lateast) {
-        this.lateast = lateast;
+
+    public void setLateastServices(boolean lateastServices) {
+        this.lateastServices = lateastServices;
     }
+
+    public int getNumPageAttractives() {
+        return numPageAttractives;
+    }
+
+    public void setNumPageAttractives(int numPageAttractives) {
+        this.numPageAttractives = numPageAttractives;
+    }
+
+    public int getSizePageAttractives() {
+        return sizePageAttractives;
+    }
+
+    public void setSizePageAttractives(int sizePageAttractives) {
+        this.sizePageAttractives = sizePageAttractives;
+    }
+
+    public long getTotalElementAttractives() {
+        return totalElementAttractives;
+    }
+
+    public void setTotalElementAttractives(long totalElementAttractives) {
+        this.totalElementAttractives = totalElementAttractives;
+    }
+
+    public int getTotalPageAttractives() {
+        return totalPageAttractives;
+    }
+
+    public void setTotalPageAttractives(int totalPageAttractives) {
+        this.totalPageAttractives = totalPageAttractives;
+    }
+
+    public boolean isLateastAttractives() {
+        return lateastAttractives;
+    }
+
+    public void setLateastAttractives(boolean lateastAttractives) {
+        this.lateastAttractives = lateastAttractives;
+    }
+
     public AppResponseDTO() {
-    super();
+        super();
     }
+
     public List<ResourcesServicesDTO> getResourceServices() {
         return resourceServices;
     }
+
     public void setResourceServices(List<ResourcesServicesDTO> resourceServices) {
         this.resourceServices = resourceServices;
     }
+
     public List<ResourcesAttractivesDTO> getResourceAttractives() {
         return resourceAttractives;
     }
+
     public void setResourceAttractives(List<ResourcesAttractivesDTO> resourceAttractives) {
         this.resourceAttractives = resourceAttractives;
     }
-   
-   
-   
-
 
 }

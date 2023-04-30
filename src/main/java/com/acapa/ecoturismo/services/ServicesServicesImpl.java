@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.acapa.ecoturismo.dtos.ServicesDTO;
 import com.acapa.ecoturismo.dtos.ServicesDTOUse;
-import com.acapa.ecoturismo.dtos.TypeServicesDTO;
 import com.acapa.ecoturismo.entitys.Services;
 import com.acapa.ecoturismo.entitys.TypesServices;
 import com.acapa.ecoturismo.entitys.prueba;
@@ -17,7 +16,6 @@ import com.acapa.ecoturismo.exceptions.BlogAppException;
 import com.acapa.ecoturismo.exceptions.ResourceNotFoundException;
 import com.acapa.ecoturismo.repository.InitiativeRepository;
 import com.acapa.ecoturismo.repository.ServicesRepository;
-//import com.acapa.ecoturismo.repository.ServicesRepository;
 import com.acapa.ecoturismo.repository.TypesServicesRepository;
 
 @Service
@@ -48,8 +46,7 @@ public class ServicesServicesImpl implements ServicesServices {
         .orElseThrow(() -> new ResourceNotFoundException("Este TypeAttractiveo no existe con ", "id",
             typeServiceId));
 
-    System.out.println("este es el type de services" + typeService);
-    services.setTypesservices(typeService);
+    services.setTypesServices(typeService);
     services.setPrueba(inittiatives);
     Services newServices = servicesRepository.save(services);
     return mapearDTOUse(newServices);

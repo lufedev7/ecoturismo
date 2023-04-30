@@ -6,23 +6,19 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class ResourcesServicesUseDTO {
-    private long id;
-    @NotEmpty
-    @Size(min = 3, message = "El nombre del recurso debe de tener almenos 3 letras")
-    private String nameResource;
-    @NotEmpty
-    @Size(min = 3, message = "El url del recurso debe de tener almenos 3 letras")
-    private String url;
-    @NotEmpty
-    @Size(min = 3, message = "la descripción del recurso debe de tener almenos 3 letras")
-    private String description;
-    private boolean typeResource;
+	private long id;
+	@NotEmpty
+	@Size(min = 3, message = "El nombre del recurso debe de tener almenos 3 letras")
+	private String nameResource;
+	@NotEmpty
+	@Size(min = 3, message = "El url del recurso debe de tener almenos 3 letras")
+	private String url;
+	@NotEmpty
+	@Size(min = 3, message = "la descripción del recurso debe de tener almenos 3 letras")
+	private String description;
+	private boolean typeResource;
 	@Size(min = 3, message = "debe ingresar una hora")
-    private String timeStamp;
-	private Set<CommentsResourceServicesDTO> comments;
-    private ServicesDTO service;
-    
-
+	private String timeStamp;
 
 	public long getId() {
 		return id;
@@ -64,7 +60,6 @@ public class ResourcesServicesUseDTO {
 		this.typeResource = typeResource;
 	}
 
-
 	public String getTimeStamp() {
 		return timeStamp;
 	}
@@ -73,19 +68,4 @@ public class ResourcesServicesUseDTO {
 		this.timeStamp = timeStamp;
 	}
 
-	public Set<CommentsResourceServicesDTO> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<CommentsResourceServicesDTO> comments) {
-		this.comments = comments;
-	}
-
-    public ServicesDTO getService() {
-        return service;
-    }
-
-    public void setService(ServicesDTO service) {
-        this.service = service;
-    }
 }

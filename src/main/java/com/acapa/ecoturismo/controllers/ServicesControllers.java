@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.ServicesDTO;
 import com.acapa.ecoturismo.dtos.ServicesDTOUse;
-import com.acapa.ecoturismo.dtos.TypeServicesDTO;
 import com.acapa.ecoturismo.services.ServicesServices;
 
 import jakarta.validation.Valid;

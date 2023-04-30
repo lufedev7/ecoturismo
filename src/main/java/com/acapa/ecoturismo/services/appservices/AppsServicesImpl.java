@@ -30,31 +30,46 @@ public class AppsServicesImpl implements AppServices {
 
     @Override
     public AppResponseDTO getpageFeed(int numberPage, int measure, String orderBy, String sortDir) {
+
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(orderBy).ascending()
                 : Sort.by(orderBy).descending();
 
         Pageable pageable = PageRequest.of(numberPage, measure, sort);
 
-        //Services
+        // Services
         Page<ResourcesServices> resourcesServices = resourcesServicesRepository.findAll(pageable);
         List<ResourcesServices> listResourcesServices = resourcesServices.getContent();
         List<ResourcesServicesDTO> content = listResourcesServices.stream().map(this::mapearDTO)
                 .collect(Collectors.toList());
 
-        //Attractives
-        Page<ResourcesAttractives> resourcesAttractives = resourcesAttractivesRepository.findAll(pageable);
-        List<ResourcesAttractives> listResourcesAtttratives = resourcesAttractives.getContent();
-        List<ResourcesAttractivesDTO> contentAttratives = listResourcesAtttratives.stream().map(this::mapearAttractivesDTO)
-        .collect(Collectors.toList());
-        AppResponseDTO appResponse = new AppResponseDTO();
+        // Attractives
+        Sort sortAttractives = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(orderBy).ascending()
+                : Sort.by(orderBy).descending();
 
+        Pageable pageableAttractives = PageRequest.of(numberPage, measure, sortAttractives);
+
+        Page<ResourcesAttractives> resourcesAttractives = resourcesAttractivesRepository.findAll(pageableAttractives);
+        List<ResourcesAttractives> listResourcesAtttratives = resourcesAttractives.getContent();
+        List<ResourcesAttractivesDTO> contentAttratives = listResourcesAtttratives.stream()
+                .map(this::mapearAttractivesDTO)
+                .collect(Collectors.toList());
+
+        AppResponseDTO appResponse = new AppResponseDTO();
         appResponse.setResourceServices(content);
         appResponse.setResourceAttractives(contentAttratives);
-         appResponse.setNumPage(resourcesServices.getNumber());
-        appResponse.setSizePage(resourcesServices.getSize());
-        appResponse.setTotalElement(resourcesServices.getTotalElements());
-        appResponse.setTotalPage(resourcesServices.getTotalPages());
-        appResponse.setLateast(resourcesServices.isLast());
+
+        appResponse.setNumPageServices(resourcesServices.getNumber());
+        appResponse.setSizePageServices(resourcesServices.getSize());
+        appResponse.setTotalElementServices(resourcesServices.getTotalElements());
+        appResponse.setTotalPageServices(resourcesServices.getTotalPages());
+        appResponse.setLateastServices(resourcesServices.isLast());
+
+        appResponse.setNumPageAttractives(resourcesAttractives.getNumber());
+        appResponse.setSizePageAttractives(resourcesAttractives.getSize());
+        appResponse.setTotalElementAttractives(resourcesAttractives.getTotalElements());
+        appResponse.setTotalPageAttractives(resourcesAttractives.getTotalPages());
+        appResponse.setLateastAttractives(resourcesAttractives.isLast());
+
         return appResponse;
     }
 
@@ -69,13 +84,9 @@ public class AppsServicesImpl implements AppServices {
     private ResourcesServicesDTO mapearDTO(ResourcesServices resourcesServices) {
         return modelMapper.map(resourcesServices, ResourcesServicesDTO.class);
     }
+
     private ResourcesAttractivesDTO mapearAttractivesDTO(ResourcesAttractives resourcesAttractives) {
         return modelMapper.map(resourcesAttractives, ResourcesAttractivesDTO.class);
     }
-
-
-
-
-
 
 }
