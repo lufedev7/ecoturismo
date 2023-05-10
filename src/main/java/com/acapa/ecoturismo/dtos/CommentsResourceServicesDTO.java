@@ -1,5 +1,7 @@
 package com.acapa.ecoturismo.dtos;
 
+import java.time.Instant;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -18,8 +20,7 @@ public class CommentsResourceServicesDTO {
 	@NotEmpty
 	@Size(min = 2, message = "username img must have at least two characters")
 	private String urlImgSession;
-	@Size(min = 2, message = "ingrese la hora correcta")
-	private String timeStamp;
+	private Instant timeStamp;
 
 	public long getId() {
 		return id;
@@ -61,11 +62,11 @@ public class CommentsResourceServicesDTO {
 		this.urlImgSession = urlImgSession;
 	}
 
-	public String getTimeStamp() {
+	public Instant getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(String timeStamp) {
+	public void setTimeStamp(Instant timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 

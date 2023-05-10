@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.acapa.ecoturismo.dtos.AttractivesDTO;
+import com.acapa.ecoturismo.dtos.AttractivesDTOAppById;
 import com.acapa.ecoturismo.dtos.AttractivesDTOUse;
 import com.acapa.ecoturismo.entitys.Attractives;
 import com.acapa.ecoturismo.entitys.TypesAttractives;
@@ -60,7 +61,7 @@ public class AttractivesServicesImpl implements AttractivesServices {
     }
 
     @Override
-    public AttractivesDTO getAttractiveById(Long idInitiative, Long idAttractive) {
+    public AttractivesDTOAppById getAttractiveById(Long idInitiative, Long idAttractive) {
 
         prueba initiatives = initiativeRepository.findById(idInitiative)
                 .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
@@ -74,7 +75,7 @@ public class AttractivesServicesImpl implements AttractivesServices {
             throw new BlogAppException(HttpStatus.BAD_REQUEST, "el atractivo no pertenece a la iniciativa");
         }
 
-        return mapearDTO(attractive);
+        return mapearDTOById(attractive);
     }
 
     @Override
@@ -117,6 +118,10 @@ public class AttractivesServicesImpl implements AttractivesServices {
 
     private AttractivesDTO mapearDTO(Attractives attractives) {
         return modelMapper.map(attractives, AttractivesDTO.class);
+    }
+
+    private AttractivesDTOAppById mapearDTOById(Attractives attractives) {
+        return modelMapper.map(attractives, AttractivesDTOAppById.class);
     }
 
     private AttractivesDTOUse mapearDTOUse(Attractives attractives) {

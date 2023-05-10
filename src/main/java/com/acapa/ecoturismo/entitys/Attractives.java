@@ -27,7 +27,7 @@ public class Attractives {
     @Column(name = "nameattractive", nullable = false, length = 100)
     private String nameAttractive;
 
-    @Column(name = "descriptionattractive", nullable = false, length = 100)
+    @Column(name = "descriptionattractive", nullable = false, length = 4000)
     private String descriptionAttractive;
     @Column(name = "featured", nullable = false, length = 200)
     private boolean featured;

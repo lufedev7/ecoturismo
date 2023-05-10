@@ -1,5 +1,9 @@
 package com.acapa.ecoturismo.entitys;
 
+import java.time.Instant;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,26 +16,26 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "commentsresourceservices", uniqueConstraints = { @UniqueConstraint(columnNames={"body"})})
+@Table(name = "commentsresourceservices", uniqueConstraints = { @UniqueConstraint(columnNames = { "body" }) })
 public class CommentsResourcesServices {
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "body", nullable = false, length = 100)
-    private String body;
-    @Column(name = "email", nullable = false, length = 100)
-    private String email;
-    @Column(name = "name", nullable = false, length = 100)
-    private String name;
-    @Column(name = "urlImgsession", nullable = false, length = 100)
-    private String urlImgSession;
-	@Column(name = "timeStamp", nullable = false, length = 100)
-    private String timeStamp;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	@Column(name = "body", nullable = false, length = 2000)
+	private String body;
+	@Column(name = "email", nullable = false, length = 100)
+	private String email;
+	@Column(name = "name", nullable = false, length = 100)
+	private String name;
+	@Column(name = "urlImgsession", nullable = false, length = 200)
+	private String urlImgSession;
+	@Column(name = "timeStamp")
+	@CreationTimestamp
+	private Instant timeStamp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resourcesservices_id",nullable = false)
-    private ResourcesServices resourcesServices;
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "resourcesservices_id", nullable = false)
+	private ResourcesServices resourcesServices;
 
 	public long getId() {
 		return id;
@@ -73,11 +77,9 @@ public class CommentsResourcesServices {
 		this.urlImgSession = urlImgSession;
 	}
 
-	
-
 	public CommentsResourcesServices() {
-	super();
-    }
+		super();
+	}
 
 	public ResourcesServices getResourcesServices() {
 		return resourcesServices;
@@ -87,13 +89,12 @@ public class CommentsResourcesServices {
 		this.resourcesServices = resourcesServices;
 	}
 
-	public String getTimeStamp() {
+	public Instant getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(String timeStamp) {
+	public void setTimeStamp(Instant timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-    
 
 }

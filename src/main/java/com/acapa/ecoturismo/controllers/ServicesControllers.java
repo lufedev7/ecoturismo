@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.ServicesDTO;
+import com.acapa.ecoturismo.dtos.ServicesDTOAppById;
 import com.acapa.ecoturismo.dtos.ServicesDTOUse;
 import com.acapa.ecoturismo.services.ServicesServices;
 
@@ -40,9 +41,9 @@ public class ServicesControllers {
     }
 
     @GetMapping("/initiatives/{initiativeId}/services/{serviceId}")
-    public ResponseEntity<ServicesDTO> getServiceById(@PathVariable(value = "initiativeId") Long initiativeId,
+    public ResponseEntity<ServicesDTOAppById> getServiceById(@PathVariable(value = "initiativeId") Long initiativeId,
             @PathVariable(value = "serviceId") Long serviceId) {
-        ServicesDTO servicesDTO = servicesServices.getServiceById(initiativeId, serviceId);
+        ServicesDTOAppById servicesDTO = servicesServices.getServiceById(initiativeId, serviceId);
         return new ResponseEntity<>(servicesDTO, HttpStatus.OK);
     }
 

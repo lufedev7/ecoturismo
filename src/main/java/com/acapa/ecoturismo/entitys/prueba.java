@@ -26,11 +26,11 @@ public class prueba {
     Long id;
     @Column(name = "initiativeName", nullable = false, length = 100)
     String initiativeName;
-    @Column(name = "initiativeDescription", nullable = false, length = 100)
+    @Column(name = "initiativeDescription", nullable = false, length = 3000)
     String initiativeDescription;
-    @Column(name = "initiativeMision", nullable = false, length = 100)
+    @Column(name = "initiativeMision", nullable = false, length = 4000)
     String initiativeMision;
-    @Column(name = "initiativeObject", nullable = false, length = 100)
+    @Column(name = "initiativeObject", nullable = false, length = 4000)
     String initiativeObject;
 
     @ManyToOne(fetch = FetchType.LAZY)

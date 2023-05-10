@@ -20,7 +20,7 @@ public class ResourcesAttractivesDTO {
 	@Size(min = 3, message = "Ingrese la hora  debe de tener almenos 3 letras")
 	private String timeStamp;
 	private Set<CommentsResourcesAttractivesDTO> commentsResourcesAttractives;
-	private AttractivesDTOUse attractive;
+	private AttractivesDTOApp attractive;
 
 	public Long getId() {
 		return id;
@@ -78,11 +78,11 @@ public class ResourcesAttractivesDTO {
 		this.commentsResourcesAttractives = commentsResourcesAttractives;
 	}
 
-	public AttractivesDTOUse getAttractive() {
+	public AttractivesDTOApp getAttractive() {
 		return attractive;
 	}
 
-	public void setAttractive(AttractivesDTOUse attractive) {
+	public void setAttractive(AttractivesDTOApp attractive) {
 		this.attractive = attractive;
 	}
 

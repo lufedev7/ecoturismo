@@ -25,11 +25,11 @@ public class Vereda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "veredaname", nullable = false, length = 100)
+    @Column(name = "veredaname", nullable = false, length = 200)
     private String veredaName;
     @Column(name = "habinumvereda", nullable = false, length = 100)
     private long HabiNumVereda;
-    @Column(name = "coorvereda", nullable = false, length = 100)
+    @Column(name = "coorvereda", nullable = false, length = 200)
     private String CoorVereda;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,14 +39,6 @@ public class Vereda {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
-
-    /*
-     * @JsonBackReference
-     * 
-     * @OneToMany(mappedBy = "vereda", cascade = CascadeType.ALL, orphanRemoval =
-     * true)
-     * private Set<Initiative> initiative = new HashSet<>();
-     */
 
     @JsonBackReference
     @OneToMany(mappedBy = "vereda", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -111,16 +103,6 @@ public class Vereda {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-
-    /*
-     * public Set<Initiative> getInitiative() {
-     * return initiative;
-     * }
-     * 
-     * public void setInitiative(Set<Initiative> initiative) {
-     * this.initiative = initiative;
-     * }
-     */
 
     public Vereda() {
         super();

@@ -1,5 +1,9 @@
 package com.acapa.ecoturismo.entitys;
 
+import java.time.Instant;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,24 +16,25 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "commentsresourceattractive", uniqueConstraints = { @UniqueConstraint(columnNames={"body"})})
+@Table(name = "commentsresourceattractive", uniqueConstraints = { @UniqueConstraint(columnNames = { "body" }) })
 public class CommentsResourcesAttractives {
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "body", nullable = false, length = 100)
-    private String body;
-    @Column(name = "email", nullable = false, length = 100)
-    private String email;
-    @Column(name = "name", nullable = false, length = 100)
-    private String name;
-    @Column(name = "urlImgsession", nullable = false, length = 100)
-    private String urlImgSession;
-	@Column(name = "timestamp", nullable = false, length = 100)
-    private String timeStamp;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resourcesattractives_id",nullable = false)
-    private ResourcesAttractives resourcesAttractives;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	@Column(name = "body", nullable = false, length = 2000)
+	private String body;
+	@Column(name = "email", nullable = false, length = 100)
+	private String email;
+	@Column(name = "name", nullable = false, length = 100)
+	private String name;
+	@Column(name = "urlImgsession", nullable = false, length = 200)
+	private String urlImgSession;
+	@Column(name = "timestamp")
+	@CreationTimestamp
+	private Instant timeStamp;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "resourcesattractives_id", nullable = false)
+	private ResourcesAttractives resourcesAttractives;
 
 	public long getId() {
 		return id;
@@ -80,15 +85,15 @@ public class CommentsResourcesAttractives {
 	}
 
 	public CommentsResourcesAttractives() {
-	super();
-    }
+		super();
+	}
 
-	public String getTimeStamp() {
+	public Instant getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(String timeStamp) {
+	public void setTimeStamp(Instant timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-    
+
 }

@@ -21,9 +21,9 @@ public class TypesAttractives {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "typeattractives", nullable = false, length = 100)
+    @Column(name = "typeattractives", nullable = false, length = 200)
     private String typeAttractives;
-    @Column(name = "descriptiontype", nullable = false, length = 100)
+    @Column(name = "descriptiontype", nullable = false, length = 3000)
     private String descriptionType;
     @JsonBackReference
     @OneToMany(mappedBy = "typesAttractives", cascade = CascadeType.ALL, orphanRemoval = true)

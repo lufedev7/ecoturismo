@@ -25,9 +25,9 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Column(name = "contactName", nullable = false, length = 100)
+    @Column(name = "contactName", nullable = false, length = 200)
     String contactName;
-    @Column(name = "addresContact", nullable = false, length = 100)
+    @Column(name = "addresContact", nullable = false, length = 200)
     String addresContact;
     @Column(name = "phoneNumber", nullable = false, length = 100)
     String phoneNumber;

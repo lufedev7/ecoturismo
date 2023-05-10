@@ -1,6 +1,6 @@
 package com.acapa.ecoturismo.dtos;
 
-import java.util.Set;
+import java.time.Instant;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -17,8 +17,16 @@ public class ResourcesServicesUseDTO {
 	@Size(min = 3, message = "la descripción del recurso debe de tener almenos 3 letras")
 	private String description;
 	private boolean typeResource;
-	@Size(min = 3, message = "debe ingresar una hora")
-	private String timeStamp;
+	// @Size(min = 3, message = "debe ingresar una hora")
+	private Instant timeStamp;
+
+	public Instant getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Instant timeStamp) {
+		this.timeStamp = timeStamp;
+	}
 
 	public long getId() {
 		return id;
@@ -60,12 +68,18 @@ public class ResourcesServicesUseDTO {
 		this.typeResource = typeResource;
 	}
 
-	public String getTimeStamp() {
-		return timeStamp;
+	public ResourcesServicesUseDTO() {
+		super();
 	}
 
-	public void setTimeStamp(String timeStamp) {
-		this.timeStamp = timeStamp;
-	}
+	/*
+	 * public String getTimeStamp() {
+	 * return timeStamp;
+	 * }
+	 * 
+	 * public void setTimeStamp(String timeStamp) {
+	 * this.timeStamp = timeStamp;
+	 * }
+	 */
 
 }

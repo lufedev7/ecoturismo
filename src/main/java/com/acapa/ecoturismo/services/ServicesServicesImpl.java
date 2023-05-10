@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.acapa.ecoturismo.dtos.ServicesDTO;
+import com.acapa.ecoturismo.dtos.ServicesDTOAppById;
 import com.acapa.ecoturismo.dtos.ServicesDTOUse;
 import com.acapa.ecoturismo.entitys.Services;
 import com.acapa.ecoturismo.entitys.TypesServices;
@@ -61,7 +62,7 @@ public class ServicesServicesImpl implements ServicesServices {
   }
 
   @Override
-  public ServicesDTO getServiceById(Long idInitiative, Long idservice) {
+  public ServicesDTOAppById getServiceById(Long idInitiative, Long idservice) {
 
     prueba initiatives = initiativeRepository.findById(idInitiative)
         .orElseThrow(() -> new ResourceNotFoundException(" it's Initiatives", "id",
@@ -76,7 +77,7 @@ public class ServicesServicesImpl implements ServicesServices {
           "el servicio no pertenece a la iniciativa");
     }
 
-    return mapearDTO(service);
+    return mapearDTOById(service);
   }
 
   @Override
@@ -125,6 +126,10 @@ public class ServicesServicesImpl implements ServicesServices {
 
   private ServicesDTO mapearDTO(Services services) {
     return modelMapper.map(services, ServicesDTO.class);
+  }
+
+  private ServicesDTOAppById mapearDTOById(Services services) {
+    return modelMapper.map(services, ServicesDTOAppById.class);
   }
 
   private ServicesDTOUse mapearDTOUse(Services services) {

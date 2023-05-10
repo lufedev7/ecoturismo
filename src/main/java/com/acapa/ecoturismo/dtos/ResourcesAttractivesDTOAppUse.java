@@ -1,11 +1,11 @@
 package com.acapa.ecoturismo.dtos;
 
-import java.time.Instant;
+import java.util.Set;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class ResourcesAttractivesDTOUse {
+public class ResourcesAttractivesDTOAppUse {
     private Long id;
     @NotEmpty
     @Size(min = 3, message = "El nombre del recurso debe de tener almenos 3 letras")
@@ -17,7 +17,9 @@ public class ResourcesAttractivesDTOUse {
     @Size(min = 4, message = "ingrese el link")
     private String linkResource;
     private boolean typeResource;
-    private Instant timeStamp;
+    @Size(min = 3, message = "Ingrese la hora  debe de tener almenos 3 letras")
+    private String timeStamp;
+    private Set<CommentsResourcesAttractivesDTO> commentsResourcesAttractives;
 
     public Long getId() {
         return id;
@@ -59,15 +61,23 @@ public class ResourcesAttractivesDTOUse {
         this.typeResource = typeResource;
     }
 
-    public Instant getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Instant timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 
-    public ResourcesAttractivesDTOUse() {
+    public Set<CommentsResourcesAttractivesDTO> getCommentsResourcesAttractives() {
+        return commentsResourcesAttractives;
+    }
+
+    public void setCommentsResourcesAttractives(Set<CommentsResourcesAttractivesDTO> commentsResourcesAttractives) {
+        this.commentsResourcesAttractives = commentsResourcesAttractives;
+    }
+
+    public ResourcesAttractivesDTOAppUse() {
         super();
     }
 

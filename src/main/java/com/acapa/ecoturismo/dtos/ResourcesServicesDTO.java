@@ -20,7 +20,15 @@ public class ResourcesServicesDTO {
 	@Size(min = 3, message = "debe ingresar una hora")
 	private String timeStamp;
 	private Set<CommentsResourceServicesDTO> comments;
-	private ServicesDTOUse services;
+	private ServicesDTOApp services;
+
+	public ServicesDTOApp getServices() {
+		return services;
+	}
+
+	public void setServices(ServicesDTOApp services) {
+		this.services = services;
+	}
 
 	public long getId() {
 		return id;
@@ -76,14 +84,6 @@ public class ResourcesServicesDTO {
 
 	public void setComments(Set<CommentsResourceServicesDTO> comments) {
 		this.comments = comments;
-	}
-
-	public ServicesDTOUse getServices() {
-		return services;
-	}
-
-	public void setServices(ServicesDTOUse services) {
-		this.services = services;
 	}
 
 }

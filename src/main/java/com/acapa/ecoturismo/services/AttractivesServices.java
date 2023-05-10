@@ -3,6 +3,7 @@ package com.acapa.ecoturismo.services;
 import java.util.List;
 
 import com.acapa.ecoturismo.dtos.AttractivesDTO;
+import com.acapa.ecoturismo.dtos.AttractivesDTOAppById;
 import com.acapa.ecoturismo.dtos.AttractivesDTOUse;
 
 public interface AttractivesServices {
@@ -11,7 +12,7 @@ public interface AttractivesServices {
 
     public List<AttractivesDTO> getAttractiveForInitiativeId(long initiativeId);
 
-    public AttractivesDTO getAttractiveById(Long idInitiative, Long idAttractive);
+    public AttractivesDTOAppById getAttractiveById(Long idInitiative, Long idAttractive);
 
     public AttractivesDTOUse updateAttractive(Long initiativeId, Long idAttractive, AttractivesDTOUse attractiveDTO);
 

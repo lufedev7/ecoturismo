@@ -1,7 +1,10 @@
 package com.acapa.ecoturismo.entitys;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -19,32 +22,30 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "resourcessevices", uniqueConstraints = { @UniqueConstraint(columnNames={"nameresource"})})
+@Table(name = "resourcessevices", uniqueConstraints = { @UniqueConstraint(columnNames = { "nameresource" }) })
 public class ResourcesServices {
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "nameresource", nullable = false, length = 100)
-    private String nameResource;
-    @Column(name = "url", nullable = false, length = 100)
-    private String url;
-	@Column(name = "description", nullable = false, length = 100)
-    private String description;
-    @Column(name = "typeresource", nullable = false, length = 100)
-    private boolean typeResource;
-	@Column(name = "timestamp", nullable = false, length = 100)
-	private String timeStamp;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "nameresource", nullable = false, length = 200)
+	private String nameResource;
+	@Column(name = "url", nullable = false, length = 100)
+	private String url;
+	@Column(name = "description", nullable = false, length = 4000)
+	private String description;
+	@Column(name = "typeresource", nullable = false, length = 200)
+	private boolean typeResource;
+	@Column(name = "timestamp")
+	@CreationTimestamp
+	private Instant timeStamp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "services_id",nullable = false)
-    private Services services;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "services_id", nullable = false)
+	private Services services;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "resourcesServices",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<CommentsResourcesServices> commentsResourceServices = new HashSet<>();
-
-
-
+	@JsonBackReference
+	@OneToMany(mappedBy = "resourcesServices", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<CommentsResourcesServices> commentsResourceServices = new HashSet<>();
 
 	public String getNameResource() {
 		return nameResource;
@@ -87,13 +88,11 @@ public class ResourcesServices {
 	}
 
 	public ResourcesServices() {
-	super();
-    }
-
-	
+		super();
+	}
 
 	public ResourcesServices(Long id, String nameResource, String url, String description, boolean typeResource,
-			String timeStamp, Services services, Set<CommentsResourcesServices> commentsResourceServices) {
+			Instant timeStamp, Services services, Set<CommentsResourcesServices> commentsResourceServices) {
 		this.id = id;
 		this.nameResource = nameResource;
 		this.url = url;
@@ -112,11 +111,11 @@ public class ResourcesServices {
 		this.description = description;
 	}
 
-	public String getTimeStamp() {
+	public Instant getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(String timeStamp) {
+	public void setTimeStamp(Instant timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
@@ -128,5 +127,4 @@ public class ResourcesServices {
 		this.id = id;
 	}
 
-    
 }

@@ -3,6 +3,7 @@ package com.acapa.ecoturismo.services;
 import java.util.List;
 
 import com.acapa.ecoturismo.dtos.ServicesDTO;
+import com.acapa.ecoturismo.dtos.ServicesDTOAppById;
 import com.acapa.ecoturismo.dtos.ServicesDTOUse;
 
 public interface ServicesServices {
@@ -12,7 +13,7 @@ public interface ServicesServices {
 
     public List<ServicesDTO> getAllservice();
 
-    public ServicesDTO getServiceById(Long idInitiative, Long idservice);
+    public ServicesDTOAppById getServiceById(Long idInitiative, Long idservice);
 
     public ServicesDTOUse updateService(Long initiativeId, Long idService, ServicesDTOUse serviceDTO);
 

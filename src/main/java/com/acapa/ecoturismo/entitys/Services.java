@@ -25,11 +25,11 @@ public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "servicesname", nullable = false, length = 100)
+    @Column(name = "servicesname", nullable = false, length = 200)
     private String servicesName;
     @Column(name = "priceperson", nullable = false, length = 100)
     private String pricePerson;
-    @Column(name = "description", nullable = false, length = 200)
+    @Column(name = "description", nullable = false, length = 3000)
     private String description;
     @Column(name = "featured", nullable = false, length = 200)
     private boolean featured;

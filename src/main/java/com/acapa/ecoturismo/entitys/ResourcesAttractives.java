@@ -1,7 +1,10 @@
 package com.acapa.ecoturismo.entitys;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -19,31 +22,31 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "resourcesatrractives", uniqueConstraints = { @UniqueConstraint(columnNames={"nameresource"})})
+@Table(name = "resourcesatrractives", uniqueConstraints = { @UniqueConstraint(columnNames = { "nameresource" }) })
 public class ResourcesAttractives {
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "nameresource", nullable = false, length = 100)
-    private String nameResource;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "nameresource", nullable = false, length = 200)
+	private String nameResource;
 
-	@Column(name = "description", nullable = false, length = 100)
-    private String description;
-	@Column(name = "timestamp", nullable = false, length = 100)
-    private String timeStamp;
-    @Column(name = "linkresource", nullable = false, length = 100)
-    private String linkResource;
+	@Column(name = "description", nullable = false, length = 3000)
+	private String description;
+	@Column(name = "timestamp")
+	@CreationTimestamp
+	private Instant timeStamp;
+	@Column(name = "linkresource", nullable = false, length = 200)
+	private String linkResource;
 	@Column(name = "typeresource", nullable = false, length = 100)
-    private boolean typeResource;
+	private boolean typeResource;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attractive_id",nullable = false)
-    private Attractives attractive;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "attractive_id", nullable = false)
+	private Attractives attractive;
 
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "resourcesAttractives",cascade = CascadeType.ALL,orphanRemoval = true)
-    private Set<CommentsResourcesAttractives> commentsResourceAttractives = new HashSet<>();
+	@JsonBackReference
+	@OneToMany(mappedBy = "resourcesAttractives", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<CommentsResourcesAttractives> commentsResourceAttractives = new HashSet<>();
 
 	public String getDescription() {
 		return description;
@@ -53,8 +56,6 @@ public class ResourcesAttractives {
 		this.description = description;
 	}
 
-
-
 	public String getNameResource() {
 		return nameResource;
 	}
@@ -62,8 +63,6 @@ public class ResourcesAttractives {
 	public void setNameResource(String nameResource) {
 		this.nameResource = nameResource;
 	}
-
-
 
 	public boolean isTypeResource() {
 		return typeResource;
@@ -90,8 +89,8 @@ public class ResourcesAttractives {
 	}
 
 	public ResourcesAttractives() {
-	super();
-    }
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -101,11 +100,11 @@ public class ResourcesAttractives {
 		this.id = id;
 	}
 
-	public String getTimeStamp() {
+	public Instant getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(String timeStamp) {
+	public void setTimeStamp(Instant timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
@@ -117,7 +116,8 @@ public class ResourcesAttractives {
 		this.linkResource = linkResource;
 	}
 
-	public ResourcesAttractives(Long id, String nameResource, String description, String timeStamp, String linkResource,
+	public ResourcesAttractives(Long id, String nameResource, String description, Instant timeStamp,
+			String linkResource,
 			boolean typeResource, Attractives attractive,
 			Set<CommentsResourcesAttractives> commentsResourceAttractives) {
 		this.id = id;
@@ -129,8 +129,5 @@ public class ResourcesAttractives {
 		this.attractive = attractive;
 		this.commentsResourceAttractives = commentsResourceAttractives;
 	}
-
-
-
 
 }

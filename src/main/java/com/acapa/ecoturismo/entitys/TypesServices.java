@@ -22,9 +22,9 @@ public class TypesServices {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "servicestype", nullable = false, length = 100)
+    @Column(name = "servicestype", nullable = false, length = 200)
     private String servicesType;
-    @Column(name = "descriptiontypeservices", nullable = false, length = 100)
+    @Column(name = "descriptiontypeservices", nullable = false, length = 3000)
     private String descriptionTypeServices;
 
     @JsonBackReference

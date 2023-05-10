@@ -3,6 +3,7 @@ package com.acapa.ecoturismo.controllers.appcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import com.acapa.ecoturismo.utils.appConst;
 
 @RestController
 @RequestMapping("/api/appcontroller")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AppController {
     @Autowired
     private AppServices appServices;

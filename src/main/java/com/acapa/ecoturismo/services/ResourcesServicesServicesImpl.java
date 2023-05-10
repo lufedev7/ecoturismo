@@ -79,7 +79,7 @@ public class ResourcesServicesServicesImpl implements ResourcesServicesServices 
         resourcesServices.setNameResource(resourcesServicesDTO.getNameResource());
         resourcesServices.setDescription(resourcesServicesDTO.getDescription());
         resourcesServices.setUrl(resourcesServicesDTO.getUrl());
-        resourcesServices.setTimeStamp(resourcesServicesDTO.getTimeStamp());
+        // resourcesServices.setTimeStamp(resourcesServicesDTO.getTimeStamp());
         resourcesServices.setTypeResource(resourcesServicesDTO.isTypeResource());
 
         ResourcesServices resourcesServicesUpdate = resourcesServicesRepository.save(resourcesServices);

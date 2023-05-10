@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.acapa.ecoturismo.dtos.AttractivesDTO;
+import com.acapa.ecoturismo.dtos.AttractivesDTOAppById;
 import com.acapa.ecoturismo.dtos.AttractivesDTOUse;
 import com.acapa.ecoturismo.services.AttractivesServices;
 
@@ -45,9 +46,10 @@ public class AttractivesControllers {
    }
 
    @GetMapping("/initiatives/{initiativeId}/attractives/{attractiveId}")
-   public ResponseEntity<AttractivesDTO> getAttractiveById(@PathVariable(value = "initiativeId") Long initiativeId,
+   public ResponseEntity<AttractivesDTOAppById> getAttractiveById(
+         @PathVariable(value = "initiativeId") Long initiativeId,
          @PathVariable(value = "attractiveId") Long attractiveId) {
-      AttractivesDTO attractivesDTO = attractivesServices.getAttractiveById(initiativeId, attractiveId);
+      AttractivesDTOAppById attractivesDTO = attractivesServices.getAttractiveById(initiativeId, attractiveId);
       return new ResponseEntity<>(attractivesDTO, HttpStatus.OK);
    }
 
