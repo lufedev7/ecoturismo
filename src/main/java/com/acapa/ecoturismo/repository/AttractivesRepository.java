@@ -8,4 +8,6 @@ import com.acapa.ecoturismo.entitys.Attractives;
 
 public interface AttractivesRepository extends JpaRepository<Attractives, Long> {
     public List<Attractives> findBypruebaId(Long initiativeId);
+
+    public List<Attractives> findByFeaturedTrue();
 }

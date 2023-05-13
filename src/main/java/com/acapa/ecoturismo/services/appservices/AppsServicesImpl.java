@@ -11,13 +11,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.acapa.ecoturismo.dtos.AppsAttractives;
 import com.acapa.ecoturismo.dtos.ResourcesAttractivesDTO;
 import com.acapa.ecoturismo.dtos.ResourcesServicesDTO;
+import com.acapa.ecoturismo.dtos.ServicesFeaturedDTO;
+import com.acapa.ecoturismo.dtos.appResponseFeaturedDTO;
 import com.acapa.ecoturismo.dtos.appcontrollerdto.AppResponseDTO;
+import com.acapa.ecoturismo.entitys.Attractives;
 import com.acapa.ecoturismo.entitys.ResourcesAttractives;
 import com.acapa.ecoturismo.entitys.ResourcesServices;
+import com.acapa.ecoturismo.entitys.Services;
+import com.acapa.ecoturismo.repository.AttractivesRepository;
 import com.acapa.ecoturismo.repository.ResourcesAttractivesRepository;
 import com.acapa.ecoturismo.repository.ResourcesServicesRepository;
+import com.acapa.ecoturismo.repository.ServicesRepository;
 
 @Service
 public class AppsServicesImpl implements AppServices {
@@ -27,6 +34,10 @@ public class AppsServicesImpl implements AppServices {
     private ResourcesServicesRepository resourcesServicesRepository;
     @Autowired
     private ResourcesAttractivesRepository resourcesAttractivesRepository;
+    @Autowired
+    private ServicesRepository servicesRepository;
+    @Autowired
+    private AttractivesRepository attractivesRepository;
 
     @Override
     public AppResponseDTO getpageFeed(int numberPage, int measure, String orderBy, String sortDir) {
@@ -87,6 +98,43 @@ public class AppsServicesImpl implements AppServices {
 
     private ResourcesAttractivesDTO mapearAttractivesDTO(ResourcesAttractives resourcesAttractives) {
         return modelMapper.map(resourcesAttractives, ResourcesAttractivesDTO.class);
+    }
+
+    private ServicesFeaturedDTO mapearDTOFeatured(Services services) {
+        return modelMapper.map(services, ServicesFeaturedDTO.class);
+    }
+
+    private AppsAttractives mapearDTOFeaturedAttractives(Attractives attractives) {
+        return modelMapper.map(attractives, AppsAttractives.class);
+    }
+
+    @Override
+    public appResponseFeaturedDTO getFeaturedFeed() {
+        List<Services> services = servicesRepository.findByFeaturedTrue();
+        List<ServicesFeaturedDTO> servicesFR = services.stream().map(cont -> mapearDTOFeatured(cont))
+                .collect(Collectors.toList());
+
+        List<Attractives> attractives = attractivesRepository.findByFeaturedTrue();
+        List<AppsAttractives> attractivesFR = attractives.stream().map(cont -> mapearDTOFeaturedAttractives(cont))
+                .collect(Collectors.toList());
+        appResponseFeaturedDTO responseFeaturedDTO = new appResponseFeaturedDTO();
+        responseFeaturedDTO.setServices(servicesFR);
+        responseFeaturedDTO.setAttractives(attractivesFR);
+        return responseFeaturedDTO;
+    }
+
+    @Override
+    public List<AppsAttractives> getFeaturedAttractives() {
+        List<Attractives> attractives = attractivesRepository.findByFeaturedTrue();
+        return attractives.stream().map(cont -> mapearDTOFeaturedAttractives(cont))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ServicesFeaturedDTO> getFeaturedServices() {
+        List<Services> services = servicesRepository.findByFeaturedTrue();
+        return services.stream().map(cont -> mapearDTOFeatured(cont))
+                .collect(Collectors.toList());
     }
 
 }

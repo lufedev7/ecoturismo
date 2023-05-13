@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.acapa.ecoturismo.dtos.AppsAttractives;
 import com.acapa.ecoturismo.dtos.ResourcesServicesDTO;
+import com.acapa.ecoturismo.dtos.ServicesFeaturedDTO;
+import com.acapa.ecoturismo.dtos.appResponseFeaturedDTO;
 import com.acapa.ecoturismo.dtos.appcontrollerdto.AppResponseDTO;
 import com.acapa.ecoturismo.services.appservices.AppServices;
 import com.acapa.ecoturismo.utils.appConst;
@@ -37,5 +40,20 @@ public class AppController {
     @GetMapping("/allservices")
     public List<ResourcesServicesDTO> listAllResourcesServicesByservices() {
         return appServices.getAllResourceServices();
+    }
+
+    @GetMapping("/featured")
+    public appResponseFeaturedDTO featured() {
+        return appServices.getFeaturedFeed();
+    }
+
+    @GetMapping("/attractivesfeatured")
+    public List<AppsAttractives> attractivesfeatured() {
+        return appServices.getFeaturedAttractives();
+    }
+
+    @GetMapping("/servicesfeatured")
+    public List<ServicesFeaturedDTO> servicesfeatured() {
+        return appServices.getFeaturedServices();
     }
 }

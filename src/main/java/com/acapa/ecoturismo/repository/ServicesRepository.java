@@ -8,4 +8,6 @@ import com.acapa.ecoturismo.entitys.Services;
 
 public interface ServicesRepository extends JpaRepository<Services, Long> {
      public List<Services> findBypruebaId(Long initiativeId);
+
+     public List<Services> findByFeaturedTrue();
 }
